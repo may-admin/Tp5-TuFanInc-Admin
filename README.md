@@ -1,6 +1,6 @@
 # Tp5-TuFanInc-Admin
 <p>作者：苏晓信</p>
-QQ交流群：184278846
+<p>QQ交流群：184278846</p>
 # 使用TP5框架最新版本，Tp5+Bootstrap+Pjax的Auth权限管理Admin，能对所有的操作方法节点进行管理
 
 #                                 申明
