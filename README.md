@@ -11,7 +11,7 @@ QQ交流群：184278846<br />
 
 在线体验地址：http://cms.tufaninc.com 账号：admin 密码：123456<br />
 
-如果你觉得还不错，请最右上角给我一个`Star`和`Watch`
+如果你觉得还不错，请顶部右上角给我一个`Star`和`Watch`
 
 附：<br />
 码云下载地址【 http://git.oschina.net/suxiaoxin/Tp5-TuFanInc-Admin 】<br />
