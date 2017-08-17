@@ -13,7 +13,7 @@ QQ交流群：184278846<br />
 码云下载地址【http://git.oschina.net/suxiaoxin/Tp5-TuFanInc-Admin】<br />
 
 使用说明：<br />
-  1、 /public/databakss/20170817161806.sql 【为数据库文件】
-  2、 /application/database.php 【数据库配置文件】
-  3、 站点配置目录为【/public】目录
-  4、 导入数据库，配置好数据库配置文件即可正常使用
+  1、 /public/databakss/20170817161806.sql 【为数据库文件】<br />
+  2、 /application/database.php 【数据库配置文件】<br />
+  3、 站点配置目录为【/public】目录<br />
+  4、 导入数据库，配置好数据库配置文件即可正常使用<br />
