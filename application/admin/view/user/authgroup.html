@@ -1,0 +1,70 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.auth_group}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>授权角色</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 授权角色</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.auth_group}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.username}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="【{$data.username}】{$data.name}" placeholder="{$Think.lang.username}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.auth_group}</label>
+                                <div class="col-sm-7 rule_node">
+                                {volist name="groupList" id="vo"}
+                                <p class='left3  p_left' >
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="group_id[]" value="{$vo.id}" class="minimal" {if condition="isset($vo.ischeck) &&$vo.ischeck eq 'y'"}checked="checked"{/if} > {$vo.title}
+                                </label>
+                                </p>
+                                {/volist}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+})
+</script>
+{/block}

@@ -1,0 +1,165 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>后台首页</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>后台首页</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 后台首页</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <p>您好，欢迎您的到来！系统使用TP：5.0.10，已经进入正式的BUG测试中，如果使用中有什么BUG或需要优化，欢迎在下面的<i>系统反馈</i>中留言。欢迎加入QQ群：184278846</p>
+        <p>系统将完全开源免费下载【码云下载地址：http://git.oschina.net/suxiaoxin/Tp5-TuFanInc-Admin】</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-yellow">
+                <div class="inner"><h3>{$userTotal}</h3><p>{$Think.lang.user_num}</p></div>
+                <div class="icon"><i class="fa fa-users"></i></div>
+                <a href="{:url('User/index')}" class="small-box-footer">{$Think.lang.more} <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-green">
+                <div class="inner"><h3>{$archiveTotal}</h3><p>{$Think.lang.archive_num}</p></div>
+                <div class="icon"><i class="fa fa-file-text"></i></div>
+                <a href="{:url('Archive/index')}" class="small-box-footer">{$Think.lang.more} <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-aqua">
+                <div class="inner"><h3>{$userNear}</h3><p>{$Think.lang.new_user_num}</p></div>
+                <div class="icon"><i class="fa fa-user-plus"></i></div>
+                <a href="{:url('User/index')}" class="small-box-footer">{$Think.lang.more} <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-red">
+                <div class="inner"><h3>{$guestbookTotal}</h3><p>{$Think.lang.new_guestbook_num}</p></div>
+                <div class="icon"><i class="fa fa-commenting"></i></div>
+                <a href="{:url('Guestbook/index')}" class="small-box-footer">{$Think.lang.more} <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-7 col-sm-7 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{$Think.lang.login_30_count}</h3>
+                </div>
+                <div class="box-body">
+                    <canvas id="login-line" height="312"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-sm-5 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{$Think.lang.login_new}</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>{$Think.lang.login_l_ip}</th>
+                            <th>{$Think.lang.login_l_address}</th>
+                            <th>{$Think.lang.login_l_time}</th>
+                        </tr>
+                        {volist name="loginLogList" id="vo"}
+                        <tr>
+                            <td><span class="label label-success">{$vo.ip}</span></td>
+                            <td>{$vo.country} {$vo.province} {$vo.city} {$vo.district}</td>
+                            <td>{$vo.create_time|time_line}</td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{$Think.lang.user_l_group}</h3>
+                </div>
+                <div class="box-body">
+                    <canvas id="user-pie" height="312"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-sm-5 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{$Think.lang.system_config}</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <table class="table table-hover">
+                        {volist name="systemConfig" id="vo" }
+                        <tr>
+                            <td>{$key}：{$vo}</td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{$Think.lang.feedback}</h3>
+                </div>
+                <div class="box-body">
+                    <form class="form-horizontal" method="POST" action="{:url('Guestbook/Create')}" onsubmit="return false" >
+                        <input type="hidden" name="status" value="1" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-9"><input class="form-control" name="title" placeholder="标题"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮箱</label>
+                            <div class="col-sm-9"><input class="form-control" name="email" placeholder="邮箱"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">留言内容</label>
+                            <div class="col-sm-9"><textarea class="form-control" style="resize:none;height:150px;" name="content" placeholder="留言内容"></textarea></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-9">
+                                <button type="reset" class="btn btn-warning pull-right">{$Think.lang.reset}</button>
+                                <button type="submit" class="btn btn-info pull-left submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+$(function () {
+    var loginLogLineJson = {$loginLogLineJson};
+    var loginline = document.getElementById('login-line').getContext('2d');
+    new Chart(loginline, {
+        type: 'line',
+        data: loginLogLineJson,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+    
+    var groupPieJson = {$groupPieJson};
+    var userpie = document.getElementById('user-pie').getContext('2d');
+    new Chart(userpie, {
+        type: 'pie',
+        data: groupPieJson,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+});
+</script>
+{/block}

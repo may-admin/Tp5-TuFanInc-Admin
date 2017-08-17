@@ -1,0 +1,64 @@
+<div class="tab-pane active" id="tab_base">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.typeid}</label>
+        <div class="col-sm-7">
+            <select class="form-control select2" name="typeid" style="width:100%;">
+                {volist name="arctypeList" id="vo"}
+                <option value="{$vo.id}" {if condition=" $vo.id eq $data.typeid "}selected="selected"{/if} {if condition="($vo.mid eq 20 || $vo.mid eq 22) || $vo.mid neq $data.mid"}disabled="disabled"{/if} >
+                    {if condition=" $vo.h_layer eq 1 "}
+                    {else /}{for start="1" end="$vo.h_layer"}　　{/for}├
+                    {/if}
+                    {$vo.typename}
+                </option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.title}</label>
+        <div class="col-sm-7"><input class="form-control" name="title" value="{$data.title}" placeholder="{$Think.lang.title}"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.flag}</label>
+        <div class="col-sm-7">
+            <label class="checkbox-inline"><input type="checkbox" name="flag[]" value="c" {if condition=" in_array('c', $data['flag']) "}checked="checked"{/if} class="minimal"> {$Think.lang.flag_c} [c]</label>
+            <label class="checkbox-inline"><input type="checkbox" name="flag[]" value="a" {if condition=" in_array('a', $data['flag']) "}checked="checked"{/if} class="minimal"> {$Think.lang.flag_a} [a]</label>
+            <label class="checkbox-inline"><input type="checkbox" name="flag[]" value="h" {if condition=" in_array('h', $data['flag']) "}checked="checked"{/if} class="minimal"> {$Think.lang.flag_h} [h]</label>
+            <label class="checkbox-inline"><input type="checkbox" name="flag[]" value="s" {if condition=" in_array('s', $data['flag']) "}checked="checked"{/if} class="minimal"> {$Think.lang.flag_s} [s]</label>
+            <label class="checkbox-inline"><input type="checkbox" name="flag[]" value="p" {if condition=" in_array('p', $data['flag']) "}checked="checked"{/if} class="minimal"> {$Think.lang.flag_p} [p]</label>
+            <label class="checkbox-inline"><input type="checkbox" name="flag[]" value="j" {if condition=" in_array('j', $data['flag']) "}checked="checked"{/if} class="minimal" id="ck-jumplink"> {$Think.lang.flag_j} [j]</label>
+        </div>
+    </div>
+    <div class="form-group {if condition=" !in_array('j', $data['flag']) "}hide{/if}" id="jumplink">
+        <label class="col-sm-2 control-label">{$Think.lang.jumplink}</label>
+        <div class="col-sm-7"><input class="form-control" name="jumplink" value="{$data.jumplink}" placeholder="{$Think.lang.jumplink}"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.litpic}</label>
+        <div class="col-sm-7">
+            <div class="input-group">
+                <input class="form-control" name="litpic" value="{$data.litpic}" placeholder="{$Think.lang.litpic}" >
+                <span class="input-group-btn">
+                    <a href="{$data.litpic|default='/static/global/face/no-image.png'}" target="_blank" >
+                        <img src="{$data.litpic|default='/static/global/face/no-image.png'}" style="height:34px; width:68px;" />
+                    </a>
+                    <button class="btn btn-success btn-flat up-btn" type="button" data-url="{:url('Uploads/upload')}?dir=image">
+                        <i class="fa fa-cloud-upload"> {$Think.lang.Upload}</i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.content}</label>
+        <div class="col-sm-7"><textarea class="form-control" name="content" placeholder="{$Think.lang.content}">{$data.addondata.content}</textarea></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.writer}/{$Think.lang.id}</label>
+        <div class="col-sm-7"><input class="form-control" name="writer" value="{$data.writer}" placeholder="{$Think.lang.writer}"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.source}</label>
+        <div class="col-sm-7"><input class="form-control" name="source" value="{$data.source}" placeholder="{$Think.lang.source}"></div>
+    </div>
+</div>

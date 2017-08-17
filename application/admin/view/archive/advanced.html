@@ -1,0 +1,32 @@
+<div class="tab-pane" id="tab_advanced">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.keywords}</label>
+        <div class="col-sm-7"><input class="form-control" name="keywords" value="{$data.keywords}" placeholder="{$Think.lang.keywords}"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.description}</label>
+        <div class="col-sm-7"><textarea class="form-control" style="resize:none;height:155px;" name="description" placeholder="{$Think.lang.description}">{$data.description}</textarea></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.click}</label>
+        <div class="col-sm-7"><input class="form-control" name="click" value="{$data.click|default='0'}" placeholder="{$Think.lang.click}"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.status}</label>
+        <div class="col-sm-7">
+            <select class="form-control select2" name="status" style="width:100%;">
+                <option value="1" {if condition="$data.status eq '1'"}selected="selected"{/if} >{$Think.lang.status1}</option>
+                <option value="0" {if condition="$data.status eq '0'"}selected="selected"{/if} >{$Think.lang.status0}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$Think.lang.create_time}</label>
+        <div class="col-sm-7">
+            <div class="input-group">
+                <input class="form-control timepicker" name="create_time" value="{$data.create_time}" placeholder="{$Think.lang.create_time}" >
+                <div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+            </div>
+        </div>
+    </div>
+</div>

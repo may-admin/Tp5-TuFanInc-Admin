@@ -1,0 +1,186 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>文章分类信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 文章分类信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <input type="hidden" name="id" value="{$data.id}" />
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                        <li><a href="#tab2" data-toggle="tab">{$Think.lang.advanced_param}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.pid}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="pid" style="width:100%;">
+                                        <option value="0" {if condition=" $data.pid eq 0 "}selected="selected"{/if} >{$Think.lang.top_arctype}</option>
+                                        {volist name="arctypeList" id="vo"}
+                                        <option value="{$vo.id}" {if condition=" $vo.id eq $data.pid "}selected="selected"{/if} {if condition="$vo.id eq $data.id"}disabled="disabled"{/if} >
+                                            {if condition=" $vo.h_layer eq 1 "}
+                                            {else /}{for start="1" end="$vo.h_layer"}　　{/for}├
+                                            {/if}
+                                            {$vo.typename}
+                                        </option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.typename}</label>
+                                <div class="col-sm-7"><input class="form-control" name="typename" value="{$data.typename}" placeholder="{$Think.lang.typename}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.litpic}</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control" name="litpic" value="{$data.litpic}" placeholder="{$Think.lang.litpic}" >
+                                        <span class="input-group-btn">
+                                            <a href="{$data.litpic|default='/static/global/face/no-image.png'}" target="_blank" >
+                                                <img src="{$data.litpic|default='/static/global/face/no-image.png'}" style="height:34px; width:68px;" />
+                                            </a>
+                                            <button class="btn btn-success btn-flat up-btn" type="button" data-url="{:url('Uploads/upload')}?dir=image">
+                                                <i class="fa fa-cloud-upload"> {$Think.lang.Upload}</i>
+                                            </button>
+                                        </span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.content}</label>
+                                <div class="col-sm-7"><textarea class="form-control" name="content" placeholder="{$Think.lang.content}">{$data.content}</textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.status}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="status" style="width:100%;">
+                                        <option value="1" {if condition="$data.status eq '1'"}selected="selected"{/if} >{$Think.lang.status1}</option>
+                                        <option value="0" {if condition="$data.status eq '0'"}selected="selected"{/if} >{$Think.lang.status0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.sorts}</label>
+                                <div class="col-sm-7"><input class="form-control" name="sorts" value="{$data.sorts|default='50'}" placeholder="{$Think.lang.sorts}"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.mid}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="mid" style="width:100%;">
+                                        {volist name="modList" id="vo"}
+                                        <option value="{$vo.id}" data-mod="{$vo.mod|substr=###,5}" {if condition=" $vo.id eq $data.mid "}selected="selected"{/if} >{$vo.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group {if condition="$data.mid neq '22'"}hide{/if}" id="jumplink">
+                                <label class="col-sm-2 control-label">{$Think.lang.jumplink}</label>
+                                <div class="col-sm-7"><input class="form-control" name="jumplink" value="{$data.jumplink}" placeholder="{$Think.lang.jumplink}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.dirs}</label>
+                                <div class="col-sm-7"><input class="form-control" name="dirs" value="{$data.dirs}" placeholder="{$Think.lang.dirs}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.keywords}</label>
+                                <div class="col-sm-7"><input class="form-control" name="keywords" value="{$data.keywords}" placeholder="{$Think.lang.keywords}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.description}</label>
+                                <div class="col-sm-7"><textarea class="form-control" style="resize:none;height:155px;" name="description" placeholder="{$Think.lang.description}">{$data.description}</textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.target}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="target" style="width:100%;">
+                                        <option value="_self" {if condition="$data.target eq '_self'"}selected="selected"{/if} >{$Think.lang.target_self}</option>
+                                        <option value="_blank" {if condition="$data.target eq '_blank'"}selected="selected"{/if} >{$Think.lang.target_blank}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.templist}</label>
+                                <div class="col-sm-7"><input class="form-control" name="templist" value="{$data.templist|default='list_article'}" placeholder="{$Think.lang.templist}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.temparticle}</label>
+                                <div class="col-sm-7"><input class="form-control" name="temparticle" value="{$data.temparticle|default='article_article'}" placeholder="{$Think.lang.temparticle}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.pagesize}</label>
+                                <div class="col-sm-7"><input class="form-control" name="pagesize" value="{$data.pagesize|default='20'}" placeholder="{$Think.lang.pagesize}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+var KDEDT_DELETE_URL = '{:url("Uploads/delete")}';   //【删除地址】如果有使用到KindEditor编辑器的文件空间删除功能，必须添加该删除地址全局变量
+
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    $("select[name='mid']").change( function() {
+        if($(this).val() == "22"){
+            $("#jumplink").removeClass("hide");
+        }else{
+            var mod = $(this).find("option:selected").data("mod");
+            var mod_list = "list_" + mod;
+            var mod_article = "article_" + mod;
+            $("input[name='templist']").val(mod_list);
+            $("input[name='temparticle']").val(mod_article);
+            $("#jumplink").addClass("hide");
+        }
+    });
+    
+    KindEditor.create('textarea[name="content"]',{
+        width : '100%',   //宽度
+        height : '320px',   //高度
+        resizeType : '0',   //禁止拖动
+        allowFileManager : true,   //允许对上传图片进行管理
+        uploadJson : '{:url("Uploads/upload")}',   //文件上传地址
+        fileManagerJson : '{:url("Uploads/manager")}',   //文件管理地址
+        //urlType : 'domain',   //带域名的路径
+        formatUploadUrl: true,   //自动格式化上传后的URL
+        autoHeightMode: false,   //开启自动高度模式
+        afterBlur: function () { this.sync(); }   //同步编辑器数据
+    });
+})
+</script>
+{/block}

@@ -1,0 +1,41 @@
+    {/*头部开始*/}
+{if condition=" $box_is_pjax != 1 "}
+    <header class="main-header">
+        <a href="#" class="logo"><span class="logo-mini">TF</span><span class="logo-lg">TuFanInc</span></a>
+        <nav class="navbar navbar-static-top">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu">
+                        <a href="/" target="_blank" >{$Think.lang.web_home}</a>
+                    </li>
+                    <li class="dropdown messages-menu">
+                        <a href="javascript:void(0);" class="delete-one" data-url="{:url('Index/cleanCache')}" data-id="-1" >{$Think.lang.clean_cache}</a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{:cookie('avatar')}" class="user-image">
+                            <span class="hidden-xs">{:cookie('name')}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <img src="{:cookie('avatar')}" class="img-circle">
+                                <p>{:cookie('name')}<small>Member since admin</small></p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left"><a href="{:url('User/edit', ['id' => cookie('uid')])}" class="btn btn-default btn-flat">个人设置</a></div>
+                                <div class="pull-right"><a href="{:url('Login/loginOut')}" class="btn btn-default btn-flat">退出</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+{/if}
+    {/*头部结束*/}

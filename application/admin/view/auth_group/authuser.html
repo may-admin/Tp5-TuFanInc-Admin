@@ -1,0 +1,77 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.auth_user}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>授权用户</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 授权用户</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.auth_user}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <input type="hidden" name="id" value="{$id}" />
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <p><b>{$Think.lang.n_auth_user}</b></p>
+                                    <select name="userid[]" id="search" class="form-control" size="15" multiple="multiple">
+                                        {volist name="userList" id="vo"}
+                                        <option value="{$vo.id}">【{$vo.username}】 {$vo.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <button type="button" id="search_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                                    <button type="button" id="search_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                                    <button type="button" id="search_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                                    <button type="button" id="search_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                                </div>
+                                <div class="col-xs-5">
+                                    <p><b>{$Think.lang.y_auth_user}</b></p>
+                                    <select name="uid[]" id="search_to" class="form-control" size="15" multiple="multiple">
+                                        {volist name="authList" id="vo"}
+                                        <option value="{$vo.id}">【{$vo.username}】 {$vo.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right submitss" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    $('#search').multiselect({
+        search: {
+            left: '<input type="text" class="form-control" placeholder="Search..." />',
+            right: '<input type="text" class="form-control" placeholder="Search..." />',
+        },
+        keepOrder: true,
+        fireSearch: function(value) {
+            return value.length > 0;   //搜索字符长度
+        }
+    });
+})
+</script>
+{/block}

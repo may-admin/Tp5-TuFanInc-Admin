@@ -1,0 +1,17 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.clean_cache}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>清除缓存</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 清除缓存</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="alert alert-success alert-dismissible">
+        <h4><i class="icon fa fa-check"></i>{$Think.lang.clean_cache} - {$Think.lang.action_success}</h4>
+    </div>
+</section>
+{/block}

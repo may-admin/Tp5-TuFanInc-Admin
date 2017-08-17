@@ -1,0 +1,45 @@
+    {/*左侧菜单开始*/}
+{if condition=" $box_is_pjax != 1 "}
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image"><img src="{:cookie('avatar')}" class="img-circle" alt="{:cookie('name')}"></div>
+                <div class="pull-left info">
+                    <p>{:cookie('name')}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
+                </div>
+            </div>
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="搜索">
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+            <ul class="sidebar-menu">
+                <li class="header">菜单</li>
+                {volist name="treeMenu" id="oo"}
+                    {if condition=" $oo.level eq '1' && $oo.name eq 'Index/index' "}
+                    <li><a href="{:url(MODULE_NAME.'/'.$oo.name)}"><i class="{$oo.icon}"></i><span>{$oo.title}</span></a></li>
+                    {elseif condition=" $oo.level eq '1' "/}
+                    <li class="treeview">
+                        <a href="javascript:void(0);">
+                            <i class="{$oo.icon}"></i><span>{$oo.title}</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            {volist name="treeMenu" id="to"}
+                            {if condition=" $to.pid eq $oo.id "}
+                            <li><a href="{:url(MODULE_NAME.'/'.$to.name)}"><i class="{$to.icon}"></i>{$to.title}</a></li>
+                            {/if}
+                            {/volist}
+                        </ul>
+                    </li>
+                    {/if}
+                {/volist}
+            </ul>
+        </section>
+    </aside>
+{/if}
+    {/*左侧菜单结束*/}

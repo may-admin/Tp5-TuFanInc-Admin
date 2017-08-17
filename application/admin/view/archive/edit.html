@@ -1,0 +1,99 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>文章信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 文章信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <input type="hidden" name="id" value="{$data.id}" />
+                <input type="hidden" name="mod" value="{$mods}" />
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_base" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                        
+                        {if condition=" $mods == 'addonvideo' "}
+                        <li><a href="#tab_video" data-toggle="tab">{$Think.lang.video_param}</a></li>
+                        {elseif condition=" $mods == 'addonalbum' "/}
+                        <li><a href="#tab_album" data-toggle="tab">{$Think.lang.album_param}</a></li>
+                        {else /}
+                        {/if}
+                        
+                        <li><a href="#tab_advanced" data-toggle="tab">{$Think.lang.advanced_param}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        {include file="archive/base" /}
+                        
+                        {if condition=" $mods == 'addonvideo' "}
+                        {include file="archive/video" /}
+                        {elseif condition=" $mods == 'addonalbum' "/}
+                        {include file="archive/album" /}
+                        {else /}
+                        {/if}
+                        
+                        {include file="archive/advanced" /}
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+var KDEDT_DELETE_URL = '{:url("Uploads/delete")}';   //【删除地址】如果有使用到KindEditor编辑器的文件空间删除功能，必须添加该删除地址全局变量
+
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    $('.timepicker').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm:ss',   //YYYY-MM-DD HH:mm:ss
+        locale: moment.locale('zh-cn')
+    });
+    
+    $("#ck-jumplink").on('ifChecked', function(event){
+        $("#jumplink").removeClass("hide");
+    });
+    $('#ck-jumplink').on('ifUnchecked', function(event){
+        $("#jumplink").addClass("hide");
+    });
+    
+    KindEditor.create('textarea[name="content"]',{
+        width : '100%',   //宽度
+        height : '320px',   //高度
+        resizeType : '0',   //禁止拖动
+        allowFileManager : true,   //允许对上传图片进行管理
+        uploadJson : '{:url("Uploads/upload")}',   //文件上传地址
+        fileManagerJson : '{:url("Uploads/manager")}',   //文件管理地址
+        //urlType : 'domain',   //带域名的路径
+        formatUploadUrl: true,   //自动格式化上传后的URL
+        autoHeightMode: false,   //开启自动高度模式
+        afterBlur: function () { this.sync(); }   //同步编辑器数据
+    });
+})
+</script>
+{/block}

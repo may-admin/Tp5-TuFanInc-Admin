@@ -1,0 +1,111 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>配置信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 配置信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="{:url('Config/save')}" onsubmit="return false" >
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <input type="hidden" name="type" value="{$type}" />
+                            {volist name="data" id="vo"}
+                            {if condition="$vo.texttype eq 'textarea'"}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$vo.desc}</label>
+                                <div class="col-sm-7"><textarea class="form-control" name="{$vo.k}" placeholder="{$vo.prompt}">{$vo.v}</textarea></div>
+                            </div>
+                            {elseif condition="$vo.k eq 'print_position'"/}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$vo.desc}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="{$vo.k}" style="width:100%;">
+                                        <option value="1" {if condition="$vo.v eq '1'"}selected="selected"{/if} >{$Think.lang.print_position_1}</option>
+                                        <option value="2" {if condition="$vo.v eq '2'"}selected="selected"{/if} >{$Think.lang.print_position_2}</option>
+                                        <option value="3" {if condition="$vo.v eq '3'"}selected="selected"{/if} >{$Think.lang.print_position_3}</option>
+                                        <option value="4" {if condition="$vo.v eq '4'"}selected="selected"{/if} >{$Think.lang.print_position_4}</option>
+                                        <option value="5" {if condition="$vo.v eq '5'"}selected="selected"{/if} >{$Think.lang.print_position_5}</option>
+                                        <option value="6" {if condition="$vo.v eq '6'"}selected="selected"{/if} >{$Think.lang.print_position_6}</option>
+                                        <option value="7" {if condition="$vo.v eq '7'"}selected="selected"{/if} >{$Think.lang.print_position_7}</option>
+                                        <option value="8" {if condition="$vo.v eq '8'"}selected="selected"{/if} >{$Think.lang.print_position_8}</option>
+                                        <option value="9" {if condition="$vo.v eq '9'"}selected="selected"{/if} >{$Think.lang.print_position_9}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {elseif condition="$vo.texttype eq 'select'"/}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$vo.desc}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="{$vo.k}" style="width:100%;">
+                                        <option value="1" {if condition="$vo.v eq '1'"}selected="selected"{/if} >{$Think.lang.yes_no1}</option>
+                                        <option value="0" {if condition="$vo.v eq '0'"}selected="selected"{/if} >{$Think.lang.yes_no0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {elseif condition="$vo.texttype eq 'image' || $vo.texttype eq 'file' || $vo.texttype eq 'flash' || $vo.texttype eq 'media'"/}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$vo.desc}</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control" name="{$vo.k}" value="{$vo.v}" placeholder="{$vo.prompt}" >
+                                        <span class="input-group-btn">
+                                            <a href="{$vo.v|default='/static/global/face/no-image.png'}" target="_blank" >
+                                                <img src="{$vo.v|default='/static/global/face/no-image.png'}" style="height:34px; width:68px;" />
+                                            </a>
+                                            <button class="btn btn-success btn-flat up-btn" type="button" data-url="{:url('Uploads/upload')}?dir={$vo.texttype}">
+                                                <i class="fa fa-cloud-upload"> {$Think.lang.Upload}</i>
+                                            </button>
+                                        </span>
+                                        <!--<span class="input-group-btn"><a class="btn btn-info btn-flat"><i class="fa fa-picture-o"> 查看图片</i></a></span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            {else /}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$vo.desc}</label>
+                                <div class="col-sm-7"><input class="form-control" name="{$vo.k}" value="{$vo.v}" placeholder="{$vo.prompt}"></div>
+                            </div>
+                            {/if}
+                            {/volist}
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                {:authAction(CONTROLLER_NAME.'/save', 'save')}
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+})
+</script>
+{/block}

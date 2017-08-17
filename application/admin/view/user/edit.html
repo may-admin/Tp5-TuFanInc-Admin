@@ -1,0 +1,299 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>用户信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 用户信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                    <li><a href="#tab2" data-toggle="tab">{$Think.lang.base_password}</a></li>
+                    <li><a href="#tab3" data-toggle="tab">{$Think.lang.base_avatar}</a></li>
+                    <li><a href="#tab4" data-toggle="tab">{$Think.lang.user_info}</a></li>
+                    <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <input type="hidden" name="actions" value="user" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.username}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.username}" placeholder="{$Think.lang.username}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.name}</label>
+                                <div class="col-sm-7"><input class="form-control" name="name" value="{$data.name}" placeholder="{$Think.lang.name}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.email}</label>
+                                <div class="col-sm-7"><input class="form-control" name="email" value="{$data.email}" placeholder="{$Think.lang.email}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.moblie}</label>
+                                <div class="col-sm-7"><input class="form-control" name="moblie" value="{$data.moblie}" placeholder="{$Think.lang.moblie}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.sex}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="sex" style="width:100%;">
+                                        <option value="1" {if condition="$data.sex eq '1'"}selected="selected"{/if} >{$Think.lang.sex1}</option>
+                                        <option value="0" {if condition="$data.sex eq '0'"}selected="selected"{/if} >{$Think.lang.sex0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.status}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="status" style="width:100%;">
+                                        <option value="1" {if condition="$data.status eq '1'"}selected="selected"{/if} >{$Think.lang.status1}</option>
+                                        <option value="0" {if condition="$data.status eq '0'"}selected="selected"{/if} >{$Think.lang.status0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group hide">
+                                <label class="col-sm-2 control-label">{$Think.lang.create_time}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.create_time}" placeholder="{$Think.lang.create_time}"></div>
+                            </div>
+                            <div class="form-group hide">
+                                <label class="col-sm-2 control-label">{$Think.lang.reg_ip}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.reg_ip}" placeholder="{$Think.lang.reg_ip}"></div>
+                            </div>
+                            <div class="form-group hide">
+                                <label class="col-sm-2 control-label">{$Think.lang.last_time}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.last_time_turn}" placeholder="{$Think.lang.last_time}"></div>
+                            </div>
+                            <div class="form-group hide">
+                                <label class="col-sm-2 control-label">{$Think.lang.last_ip}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.last_ip}" placeholder="{$Think.lang.last_ip}"></div>
+                            </div>
+                            <div class="form-group hide">
+                                <label class="col-sm-2 control-label">{$Think.lang.logins}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.logins}" placeholder="{$Think.lang.logins}"></div>
+                            </div>
+                            <div class="form-group hide">
+                                <label class="col-sm-2 control-label">{$Think.lang.update_time}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.update_time}" placeholder="{$Think.lang.update_time}"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-7">
+                                    <div class="btn-group pull-right">
+                                        <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                                    </div>
+                                    <div class="btn-group pull-left">
+                                        <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab2">
+                        <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <input type="hidden" name="actions" value="password" />
+                            <div class="form-group {if condition=" $data['id'] == UID "}hide{/if}">
+                                <label class="col-sm-2 control-label">{$Think.lang.oldpassword}</label>
+                                <div class="col-sm-7"><input class="form-control" name="oldpassword" value="" placeholder="{$Think.lang.oldpassword}" type="password"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.newpassword}</label>
+                                <div class="col-sm-7"><input class="form-control" name="password" value="" placeholder="{$Think.lang.newpassword}" type="password"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.repassword}</label>
+                                <div class="col-sm-7"><input class="form-control" name="repassword" value="" placeholder="{$Think.lang.repassword}" type="password"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-7">
+                                    <div class="btn-group pull-right">
+                                        <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                                    </div>
+                                    <div class="btn-group pull-left">
+                                        <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab3">
+                        <!--
+                        <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <input type="hidden" name="actions" value="avatar" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.avatar}</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control" name="avatar" value="{$data.userInfo.avatar}" placeholder="{$Think.lang.avatar}" >
+                                        <span class="input-group-btn"><button class="btn btn-success btn-flat up-btn" type="button" data-url="{:url('Uploads/avatar')}?dir=avatar"><i class="fa fa-cloud-upload"> {$Think.lang.Upload}</i></button></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-7">
+                                    <div class="btn-group pull-right">
+                                        <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                                    </div>
+                                    <div class="btn-group pull-left">
+                                        <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        -->
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.avatar}</label>
+                                <div class="col-sm-7">
+                                    <div id="avatar-box">
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div id="crop-avatar" class="col-md-6">
+                                                    <div class="avatar-view" title="点击修改头像">
+                                                        <img src="{$data.userInfo.avatar}" alt="avatar">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <form class="avatar-form" action="{:url('Uploads/cropper')}?dir=avatar" enctype="multipart/form-data" method="post">
+                                                        <input type="hidden" name="id" value="{$data.id}" />
+                                                        <input type="hidden" name="actions" value="avatar" />
+                                                        <div class="modal-header">
+                                                            <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                                            <h4 class="modal-title" id="avatar-modal-label">图片大小限制在 2.00M</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="avatar-body">
+                                                                <div class="avatar-upload">
+                                                                    <input class="avatar-src" name="avatar_src" type="hidden">
+                                                                    <input class="avatar-data" name="avatar_data" type="hidden">
+                                                                    <label for="avatarInput">图片上传</label>
+                                                                    <input class="avatar-input" id="avatarInput" name="avatar_file" type="file"></div>
+                                                                <div class="row">
+                                                                    <div class="col-md-9">
+                                                                        <div class="avatar-wrapper"></div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="avatar-preview preview-lg"></div>
+                                                                        <!--
+                                                                        <div class="avatar-preview preview-md"></div>
+                                                                        <div class="avatar-preview preview-sm"></div>
+                                                                        -->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row avatar-btns">
+                                                                    <div class="col-md-9">
+                                                                        <div class="btn-group">
+                                                                            <button class="btn" data-method="rotate" data-option="-90" type="button"><i class="fa fa-undo"></i> 向左旋转</button>
+                                                                        </div>
+                                                                        <div class="btn-group">
+                                                                            <button class="btn" data-method="rotate" data-option="90" type="button"><i class="fa fa-repeat"></i> 向右旋转</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <button class="btn btn-info btn-block" type="submit"><i class="fa fa-save"></i> 保存修改</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab4">
+                        <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <input type="hidden" name="actions" value="infos" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.qq}</label>
+                                <div class="col-sm-7"><input class="form-control" name="qq" value="{$data.userInfo.qq}" placeholder="{$Think.lang.qq}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.birthday}</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control timepicker" name="birthday" value="{$data.userInfo.birthday_turn}" placeholder="{$Think.lang.birthday}" >
+                                        <div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.info}</label>
+                                <div class="col-sm-7"><textarea class="form-control" name="info" placeholder="{$Think.lang.info}">{$data.userInfo.info}</textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-7">
+                                    <div class="btn-group pull-right">
+                                        <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                                    </div>
+                                    <div class="btn-group pull-left">
+                                        <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+var KDEDT_DELETE_URL = '{:url("Uploads/delete")}';   //【删除地址】如果有使用到KindEditor编辑器的文件空间删除功能，必须添加该删除地址全局变量
+
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    $('.timepicker').datetimepicker({
+        format: 'YYYY-MM-DD',   //YYYY-MM-DD HH:mm:ss
+        locale: moment.locale('zh-cn')
+    });
+    
+    KindEditor.create('textarea[name="info"]',{
+        width : '100%',   //宽度
+        height : '320px',   //高度
+        resizeType : '0',   //禁止拖动
+        allowFileManager : true,   //允许对上传图片进行管理
+        uploadJson : '{:url("Uploads/upload")}',   //文件上传地址
+        fileManagerJson : '{:url("Uploads/manager")}',   //文件管理地址
+        urlType : 'domain',   //带域名的路径
+        formatUploadUrl: true,   //自动格式化上传后的URL
+        autoHeightMode: false,   //开启自动高度模式
+        afterBlur: function () { this.sync(); }   //同步编辑器数据
+    });
+    
+    return new CropAvatar($('#avatar-box'));
+})
+</script>
+
+{/block}

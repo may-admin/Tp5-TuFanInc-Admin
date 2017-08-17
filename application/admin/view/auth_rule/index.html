@@ -1,0 +1,84 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.list}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>节点列表</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 节点列表</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                    <div class="pull-left">
+                        {:authAction(CONTROLLER_NAME.'/create', 'create')} 
+                    </div>
+                </div>
+                <div class="box-body table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th>{$Think.lang.title}</th>
+                            <th>{$Think.lang.name}</th>
+                            <th>{$Think.lang.level}</th>
+                            <th>{$Think.lang.status}</th>
+                            <th>{$Think.lang.ismenu}</th>
+                            <th>{$Think.lang.icon}</th>
+                            <th>{$Think.lang.sorts}</th>
+                            <th width="124">{$Think.lang.action}</th>
+                        </tr>
+                        {volist name="dataList" id="vo"}
+                        <tr>
+                            <td>
+                                {eq name="vo['level']" value="3"}　　　│　　　├{/eq}
+                                {eq name="vo['level']" value="2"}　　　├{/eq}
+                                <span class="editable" data-pk="{$vo.id}" data-name="title" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.title}</span>
+                            </td>
+                            <td><span class="editable" data-pk="{$vo.id}" data-name="name" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.name}</span></td>
+                            <td>{$vo.level_turn}</td>
+                            <td>
+                                <a href="javascript:void(0);" data-id="{$vo.id}" data-field="status" 
+                                data-value="{$vo.status}" data-url="{:url('edit', 'id='.$vo['id'])}" 
+                                class='editimg fa {if condition=" $vo.status == 1 "}fa-check-circle text-green{else /}fa-times-circle text-red{/if}'></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" data-id="{$vo.id}" data-field="ismenu" 
+                                data-value="{$vo.ismenu}" data-url="{:url('edit', 'id='.$vo['id'])}" 
+                                class='editimg fa {if condition=" $vo.ismenu == 1 "}fa-check-circle text-green{else /}fa-times-circle text-red{/if}'></a>
+                            </td>
+                            <td align="center"><i class="{$vo.icon}"></td>
+                            <td>{$vo.sorts}</td>
+                            <td>{include file="public/list_action" /}</td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    $('.editable').editable({
+        emptytext: "empty",
+        params: function(params) {      //参数
+            var data = {};
+            data['id'] = params.pk;
+            data[params.name] = params.value;
+            return data;
+        },
+        success: function(response, newValue) {
+            var res = $.parseJSON( response );
+            if(res.status == 1){
+            }else{
+                return res.info;
+            }
+        }
+    });
+})
+</script>
+{/block}

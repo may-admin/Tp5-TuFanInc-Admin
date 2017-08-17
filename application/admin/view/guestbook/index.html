@@ -1,0 +1,81 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.list}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>评论列表</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 评论列表</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    {include file="public/top_action" /}
+                    {include file="public/search" /}
+                </div>
+                <div class="box-body table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th width="35"><input type="checkbox" class="minimal checkbox-toggle"></th>
+                            <th>{$Think.lang.id}</th>
+                            <th>{$Think.lang.uusername} - {$Think.lang.uname}</th>
+                            <th>{$Think.lang.title}</th>
+                            <th>{$Think.lang.email}</th>
+                            <th>{$Think.lang.create_time}</th>
+                            <th>{$Think.lang.status}</th>
+                            <th width="124">{$Think.lang.action}</th>
+                        </tr>
+                        {volist name="dataList" id="vo"}
+                        <tr>
+                            <td><input type="checkbox" name="id[]" value="{$vo.id}" class="minimal"></td>
+                            <td>{$vo.id}</td>
+                            <td>{$vo->user->username|default=0} - {$vo->user->name|default='0'}</td>
+                            <td>{$vo.title}</td>
+                            <td>{$vo.email}</td>
+                            <td>{$vo.create_time}</td>
+                            <td>
+                                <a href="javascript:void(0);" data-id="{$vo.id}" data-field="status" 
+                                data-value="{$vo.status}" data-url="{:url('edit', 'id='.$vo['id'])}" 
+                                class='editimg fa {if condition=" $vo.status == 1 "}fa-check-circle text-green{else /}fa-times-circle text-red{/if}'></a>
+                            </td>
+                            <td>{include file="public/list_action" /}</td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+                <div class="box-footer clearfix">
+                    {$dataList->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    /*全选-反选*/
+    $('.checkbox-toggle').on('ifChecked', function(event){
+        var _this = $(this);
+        var _table = _this.closest('.table');
+        _table.find("tr td input[type='checkbox']").iCheck("check");
+    });
+    $('.checkbox-toggle').on('ifUnchecked', function(event){
+        var _this = $(this);
+        var _table = _this.closest('.table');
+        _table.find("tr td input[type='checkbox']").iCheck("uncheck");
+    });
+})
+</script>
+{/block}

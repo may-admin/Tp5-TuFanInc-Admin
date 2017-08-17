@@ -1,0 +1,31 @@
+{if condition=" $box_is_pjax != 1 "}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+{/if}
+{block name="title"}<title>后台首页</title>{/block}
+{block name="admin_load_t"}{include file="public/admin_load_t" /}{/block}
+{if condition=" $box_is_pjax != 1 "}
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+<div class="wrapper">
+{/if}
+    {block name="admin_top"}{include file="public/admin_top" /}{/block}
+    {block name="admin_left"}{include file="public/admin_left" /}{/block}
+    {/*右侧内容开始*/}
+    <div class="content-wrapper" id="pjax-container">
+        {block name="pjax_container"}{/block}
+    </div>
+    {/*右侧内容结束*/}
+    {block name="admin_bottom"}{include file="public/admin_bottom" /}{/block}
+{if condition=" $box_is_pjax != 1 "}
+</div>
+{/if}
+{block name="admin_load_b"}{include file="public/admin_load_b" /}{/block}
+{if condition=" $box_is_pjax != 1 "}
+</body>
+</html>
+{/if}
