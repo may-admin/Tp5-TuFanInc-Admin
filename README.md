@@ -9,12 +9,14 @@ QQ交流群：184278846<br />
 1.3 开源不等于免费，开源不等于无版权，开源系统的发展需要您我共同的努力。<br />
 1.4 对于其他任何渠道下载传播该系统的站点等等方式【禁止其他下载地址】，作者不另行通知版权问题，作者保留通过法律手段追究责任的权利。<br />
 
+在线体验地址：http://cms.tufaninc.com<br />
+
 附：<br />
 码云下载地址【 http://git.oschina.net/suxiaoxin/Tp5-TuFanInc-Admin 】<br />
 
 使用说明：<br />
   1、 /public/databakss/20170817161806.sql 【为数据库文件】<br />
   2、 /application/database.php 【数据库配置文件】<br />
-  3、 站点配置目录为【/public】目录<br />
+  3、 站点配置根目录为【/public】<br />
   4、 导入数据库，配置好数据库配置文件即可正常使用<br />
   5、 默认账号：admin 密码：123456<br />
