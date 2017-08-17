@@ -10,7 +10,7 @@ QQ交流群：184278846<br />
 1.4 对于其他任何渠道下载传播该系统的站点等等方式【禁止其他下载地址】，作者不另行通知版权问题，作者保留通过法律手段追究责任的权利。<br />
 
 附：<br />
-码云下载地址【http://git.oschina.net/suxiaoxin/Tp5-TuFanInc-Admin】<br />
+码云下载地址【 http://git.oschina.net/suxiaoxin/Tp5-TuFanInc-Admin 】<br />
 
 使用说明：<br />
   1、 /public/databakss/20170817161806.sql 【为数据库文件】<br />
