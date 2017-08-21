@@ -17,6 +17,8 @@
 .rule_node .left3{ margin-left:0px; clear:none;}
 .rule_node .p_left{ float:left; }
 
+.table-sort th a{ margin-left:4px; color:#3c8dbc; cursor:pointer;}
+
 /*
 .up-text{ padding-right:65px;}
 .up-btn{ position:absolute; right:15px; top:0;}
