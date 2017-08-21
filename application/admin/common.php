@@ -177,6 +177,72 @@ function csubstr($str, $length, $charset="", $start=0, $suffix=true) {
 }
 
 /**
+ * @Title: search_url
+ * @Description: todo(搜索的地址)
+ * @param string $delparam
+ * @return string|unknown
+ * @author 苏晓信
+ * @date 2017年8月21日
+ * @throws
+ */
+function search_url($delparam){
+    $url_path = $_SERVER['PATH_INFO'];
+    $get = input('get.');
+    if( isset($get[$delparam]) ){ unset($get[$delparam]); }
+    if( isset($get['_pjax'])   ){ unset($get['_pjax']);   }
+    if(!empty($get)){
+        $paramStr = [];
+        foreach ($get as $k=>$v){
+            $paramStr[] = $k.'='.$v;
+        }
+        $paramStrs = implode('&', $paramStr);
+        $url_path = $url_path.'?'.$paramStrs;
+    }
+    return $url_path;
+}
+
+/**
+ * @Title: table_sort
+ * @Description: todo(列表table排序)
+ * @param string $param
+ * @return string
+ * @author 苏晓信
+ * @date 2017年8月21日
+ * @throws
+ */
+function table_sort($param){
+    $url_path = $_SERVER['PATH_INFO'];
+    $faStr = 'fa-sort';
+    $get = input('get.');
+    if( isset($get['_pjax']) ){ unset($get['_pjax']); }
+    
+    if( isset($get['_sort']) ){   //判断是否存在排序字段
+        $sortArr = explode(',', $get['_sort']);
+        if ( $sortArr[0] == $param ){   //当前排序
+            if ($sortArr[1] == 'asc'){
+                $faStr = 'fa-sort-asc';
+                $sort = 'desc';
+            }elseif ($sortArr[1] == 'desc'){
+                $faStr = 'fa-sort-desc';
+                $sort = 'asc';
+            }
+            $get['_sort'] = $param.','.$sort;
+        }else{   //非当前排序
+            $get['_sort'] = $param.',asc';
+        }
+    }else{
+        $get['_sort'] = $param.',asc';
+    }
+    $paramStr = [];
+    foreach ($get as $k=>$v){
+        $paramStr[] = $k.'='.$v;
+    }
+    $paramStrs = implode('&', $paramStr);
+    $url_path = $url_path.'?'.$paramStrs;
+    return "<a class=\"fa ".$faStr."\" href=\"".$url_path."\"></a>";
+}
+
+/**
  * @Title: authcheck
  * @Description: todo(权限节点判断)
  * @param string $rule

@@ -21,14 +21,14 @@
                     {include file="public/search" /}
                 </div>
                 <div class="box-body table-responsive">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sort">
                         <tr>
                             <th width="35"><input type="checkbox" class="minimal checkbox-toggle"></th>
-                            <th>{$Think.lang.id}</th>
-                            <th>{$Think.lang.musername} | {$Think.lang.mname} [{$Think.lang.behire}]</th>
-                            <th>{$Think.lang.uusername} | {$Think.lang.uname} [{$Think.lang.hire}]</th>
+                            <th>{$Think.lang.id}{:table_sort('id')}</th>
+                            <th>{$Think.lang.musername} | {$Think.lang.mname} [{$Think.lang.behire}]{:table_sort('mid')}</th>
+                            <th>{$Think.lang.uusername} | {$Think.lang.uname} [{$Think.lang.hire}]{:table_sort('uid')}</th>
                             <th>{$Think.lang.create_time}</th>
-                            <th>{$Think.lang.status}</th>
+                            <th>{$Think.lang.status}{:table_sort('status')}</th>
                             <th width="124">{$Think.lang.action}</th>
                         </tr>
                         {volist name="dataList" id="vo"}

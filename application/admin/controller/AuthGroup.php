@@ -23,7 +23,13 @@ class AuthGroup extends Common
         if (input('get.search')){
             $where['title|notation'] = ['like', '%'.input('get.search').'%'];
         }
-        $dataList = $this->cModel->where($where)->order('module ASC,level DESC,id ASC')
+        if (input('get._sort')){
+            $order = explode(',', input('get._sort'));
+            $order = $order[0].' '.$order[1];
+        }else{
+            $order = 'module asc,level desc,id asc';
+        }
+        $dataList = $this->cModel->where($where)->order($order)
         ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
         $this->assign('dataList', $dataList);
         return $this->fetch();

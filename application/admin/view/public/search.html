@@ -1,5 +1,5 @@
 <div class="box-tools" style="top:10px;">
-    <form action="{:url('index')}" method="GET" pjax-search="">
+    <form action="{:search_url('search')}" method="GET" pjax-search="">
         <div class="input-group input-group-sm" style="width:150px;">
             <input type="text" name="search" class="form-control pull-right" value="{:input('get.search')}" placeholder="{$Think.lang.search}" />
             <div class="input-group-btn"><button type="submit" class="btn btn-default sreachs"><i class="fa fa-search"></i></button></div>

@@ -21,16 +21,16 @@
                     {include file="public/search" /}
                 </div>
                 <div class="box-body table-responsive">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sort">
                         <tr>
                             <th width="35"><input type="checkbox" class="minimal checkbox-toggle"></th>
-                            <th>{$Think.lang.id}</th>
-                            <th>{$Think.lang.ip}</th>
-                            <th>{$Think.lang.user}</th>
-                            <th>{$Think.lang.country}</th>
-                            <th>{$Think.lang.province}</th>
-                            <th>{$Think.lang.city}</th>
-                            <th>{$Think.lang.district}</th>
+                            <th>{$Think.lang.id}{:table_sort('id')}</th>
+                            <th>{$Think.lang.ip}{:table_sort('ip')}</th>
+                            <th>{$Think.lang.user}{:table_sort('uid')}</th>
+                            <th>{$Think.lang.country}{:table_sort('country')}</th>
+                            <th>{$Think.lang.province}{:table_sort('province')}</th>
+                            <th>{$Think.lang.city}{:table_sort('city')}</th>
+                            <th>{$Think.lang.district}{:table_sort('district')}</th>
                             <th>{$Think.lang.create_time}</th>
                             <th width="66">{$Think.lang.action}</th>
                         </tr>

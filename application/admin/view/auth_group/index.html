@@ -18,15 +18,15 @@
                     {include file="public/search" /}
                 </div>
                 <div class="box-body table-responsive">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sort">
                         <tr>
                             <th width="35"><input type="checkbox" class="minimal checkbox-toggle"></th>
-                            <th>{$Think.lang.id}</th>
-                            <th>{$Think.lang.title}</th>
+                            <th>{$Think.lang.id}{:table_sort('id')}</th>
+                            <th>{$Think.lang.title}{:table_sort('title')}</th>
                             <th>{$Think.lang.module}</th>
-                            <th>{$Think.lang.level}</th>
+                            <th>{$Think.lang.level}{:table_sort('level')}</th>
                             <th>{$Think.lang.notation}</th>
-                            <th>{$Think.lang.status}</th>
+                            <th>{$Think.lang.status}{:table_sort('status')}</th>
                             <th width="202">{$Think.lang.action}</th>
                         </tr>
                         {volist name="dataList" id="vo"}

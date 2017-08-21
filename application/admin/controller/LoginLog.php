@@ -20,7 +20,13 @@ class LoginLog extends Common
         if (input('get.search')){
             $where['ip'] = ['like', '%'.input('get.search').'%'];
         }
-        $dataList = $this->cModel->where($where)->order('id DESC')
+        if (input('get._sort')){
+            $order = explode(',', input('get._sort'));
+            $order = $order[0].' '.$order[1];
+        }else{
+            $order = 'id desc';
+        }
+        $dataList = $this->cModel->where($where)->order($order)
         ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
         $this->assign('dataList', $dataList);
         return $this->fetch();

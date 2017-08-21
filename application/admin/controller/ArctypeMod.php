@@ -20,7 +20,13 @@ class ArctypeMod extends Common
         if (input('get.search')){
             $where['name|mod'] = ['like', '%'.input('get.search').'%'];
         }
-        $dataList = $this->cModel->where($where)->order('sorts ASC,id ASC')
+        if (input('get._sort')){
+            $order = explode(',', input('get._sort'));
+            $order = $order[0].' '.$order[1];
+        }else{
+            $order = 'sorts asc,id asc';
+        }
+        $dataList = $this->cModel->where($where)->order($order)
         ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
         $this->assign('dataList', $dataList);
         return $this->fetch();
