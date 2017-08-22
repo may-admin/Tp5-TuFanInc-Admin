@@ -26,8 +26,7 @@ class ModuleClass extends Common
         }else{
             $order = 'sorts asc,id asc';
         }
-        $dataList = $this->cModel->where($where)->order($order)
-        ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
+        $dataList = $this->cModel->where($where)->order($order)->paginate('', false, page_param());
         $this->assign('dataList', $dataList);
         return $this->fetch();
     }

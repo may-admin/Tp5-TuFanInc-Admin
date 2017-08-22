@@ -27,8 +27,7 @@ class Flink extends Common
         }else{
             $order = 'sorts asc,id asc';
         }
-        $dataList = $this->cModel->where($where)->order($order)
-        ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
+        $dataList = $this->cModel->where($where)->order($order)->paginate('', false, page_param());
         foreach ($dataList as $k=>$v){
             $v->moduleClass;
         }

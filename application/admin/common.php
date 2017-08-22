@@ -243,6 +243,23 @@ function table_sort($param){
 }
 
 /**
+ * @Title: page_param
+ * @Description: todo(分页额外参数)
+ * @return array
+ * @author 苏晓信
+ * @date 2017年8月22日
+ * @throws
+ */
+function page_param(){
+    $param = request()->param();
+    if (isset($param['_pjax'])){
+        unset($param['_pjax']);
+    }
+    $res['query'] = $param;
+    return $res;
+}
+
+/**
  * @Title: authcheck
  * @Description: todo(权限节点判断)
  * @param string $rule

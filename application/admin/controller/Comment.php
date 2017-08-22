@@ -26,8 +26,7 @@ class Comment extends Common
         }else{
             $order = 'id desc';
         }
-        $dataList = $this->cModel->where($where)->order($order)
-        ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
+        $dataList = $this->cModel->where($where)->order($order)->paginate('', false, page_param());
         foreach ($dataList as $k=>$v){
             $v->master;
             $v->user;

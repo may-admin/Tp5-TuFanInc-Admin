@@ -28,8 +28,7 @@ class Archive extends Common
         }else{
             $order = 'id desc';
         }
-        $dataList = $this->cModel->where($where)->order($order)
-        ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
+        $dataList = $this->cModel->where($where)->order($order)->paginate('', false, page_param());
         foreach ($dataList as $k => $v){
             if(!empty($v['flag'])){ $dataList[$k]['flag'] = explode(',', $v['flag']); }
             $v->Arctype;   //关联栏目数据

@@ -30,8 +30,7 @@ class User extends Common
         }else{
             $order = 'id desc';
         }
-        $dataList = $this->cModel->where($where)->order($order)
-        ->paginate('', false, ['query'=> ['search' => input('get.search')]]);
+        $dataList = $this->cModel->where($where)->order($order)->paginate('', false, page_param());
         $agMolde = new AuthGroup();
         $agList = $agMolde->select();
         $agListArr = [];
