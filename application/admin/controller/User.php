@@ -135,27 +135,34 @@ class User extends Common
         if (request()->isPost()){
             $id = input('id');
             if (isset($id) && !empty($id)){
-                $id_arr = explode(',', $id);
-                $where = [ 'id' => ['in', $id_arr] ];
-                $result = $this->cModel->where($where)->delete();
-                
-                $where = [ 'uid' => ['in', $id_arr] ];
-                $agaModel = new AuthGroupAccess();
-                $agaModel->where($where)->delete();   //删除用户分配角色
-                
-                $uiModel = new UserInfo();
-                $data = $uiModel->where($where)->select();
-                
-                $uiModel->where($where)->delete();   //删除用户附加表
-                foreach ($data as $k => $v){
-                    if ($v['avatar'] != '/static/global/face/default.png'){
-                        unlink(WEB_PATH.$v['avatar']);   //删除头像文件
+                Db::startTrans();
+                try{
+                    $id_arr = explode(',', $id);   //用户数据
+                    $where1 = [ 'uid' => ['in', $id_arr] ];
+                    $uiModel = new UserInfo();
+                    $data = $uiModel->where($where1)->select();   //查询用户附加表信息【用于删除头像】
+                    $where2 = [ 'id' => ['in', $id_arr] ];
+                    $result = $this->cModel->where($where2)->delete();   //删除主表数据
+                    $where3 = [ 'uid' => ['in', $id_arr] ];
+                    $agaModel = new AuthGroupAccess();
+                    $agaModel->where($where1)->delete();   //删除用户分配角色
+                    $result2 = $uiModel->where($where1)->delete();   //删除用户附加表
+                    // 提交事务
+                    if ($result && $result2){
+                        Db::commit();
+                        foreach ($data as $k => $v){
+                            if ($v['avatar'] != '/static/global/face/default.png'){
+                                unlink(WEB_PATH.$v['avatar']);   //删除头像文件
+                            }
+                        }
+                        return ajaxReturn(lang('action_success'), url('index'));
+                    }else{
+                        return ajaxReturn($this->cModel->getError());
                     }
-                }
-                if ($result){
-                    return ajaxReturn(lang('action_success'), url('index'));
-                }else{
-                    return ajaxReturn($this->cModel->getError());
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                    return ajaxReturn($e->getMessage());
                 }
             }
         }

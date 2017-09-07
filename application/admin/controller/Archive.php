@@ -5,6 +5,7 @@ use think\Controller;
 use app\admin\model\Archive as Archives;
 use app\admin\model\Arctype;
 use app\admin\model\ArctypeMod;
+use think\Db;
 
 class Archive extends Common
 {
@@ -54,20 +55,28 @@ class Archive extends Common
     public function create($typeid)
     {
         if (request()->isPost()){
-            $data = input('post.');
-            $data['create_time'] = strtotime($data['create_time']);
-            if (isset($data['flag']) || isset($data['litpic'])){
-                $data['flag'] = $this->_flag($data['flag'], $data['litpic']);
-            }
-            $result = $this->cModel->validate(CONTROLLER_NAME.'.add')->allowField(true)->save($data);
-            
-            $data['aid'] = $this->cModel->getLastInsID();
-            $mod = $data['mod'];
-            $addonData = db($mod)->field('id', true)->strict(false)->insert($data);   //新增关联表数据
-            if ($result){
-                return ajaxReturn(lang('action_success'), url('Arctype/index'));
-            }else{
-                return ajaxReturn($this->cModel->getError());
+            Db::startTrans();
+            try{
+                $data = input('post.');
+                $data['create_time'] = strtotime($data['create_time']);
+                if (isset($data['flag']) || isset($data['litpic'])){
+                    $data['flag'] = $this->_flag($data['flag'], $data['litpic']);
+                }
+                $result = $this->cModel->validate(CONTROLLER_NAME.'.add')->allowField(true)->save($data);
+                $data['aid'] = $this->cModel->getLastInsID();
+                $mod = $data['mod'];
+                $addonData = db($mod)->field('id', true)->strict(false)->insert($data);   //新增关联表数据
+                // 提交事务
+                if ($result && $addonData){
+                    Db::commit();
+                    return ajaxReturn(lang('action_success'), url('Arctype/index'));
+                }else{
+                    return ajaxReturn($this->cModel->getError());
+                }
+            } catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+                return ajaxReturn($e->getMessage());
             }
         }else{
             $atModel = new Arctype();
