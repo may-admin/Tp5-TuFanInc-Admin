@@ -2,7 +2,7 @@
 MySQL Database Backup Tools
 Server:127.0.0.1:
 Database:tp_base_com
-Data:2017-08-17 16:18:06
+Data:2017-09-07 18:02:10
 */
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
@@ -31,11 +31,148 @@ CREATE TABLE `tf_addonarticle` (
   `content` text COMMENT '内容',
   PRIMARY KEY (`id`),
   KEY `aid` (`aid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_addonarticle
 -- ----------------------------
-INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('1','1','文章模型1');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('1','1','tf_bill --- 【XX】账单信息
+&lt;p&gt;
+	tf_collection --- 【XX】收藏
+&lt;/p&gt;
+&lt;p&gt;
+	tf_order --- 【XX】订单
+&lt;/p&gt;
+&lt;p&gt;
+	tf_withdraw --- 【XX】提现
+&lt;/p&gt;
+&lt;p&gt;
+	图片惰性加载jquery.lazyload.min.js
+&lt;/p&gt;
+&lt;p&gt;
+	&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+	jquery.scrollLoading
+&lt;/p&gt;');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('2','2','');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('3','3','只有简介，没有图');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('4','4','&lt;p&gt;
+	&lt;br /&gt;
+&lt;/p&gt;');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('5','5','所谓缘分，就是遇见了该遇见的人');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('6','6','每一次遗憾都是对生命的一种肯定');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('7','7','&lt;p&gt;
+	以为我永远只能一个人生活
+&lt;/p&gt;
+&lt;p&gt;
+	孤单地快乐哀愁
+&lt;/p&gt;
+&lt;p&gt;
+	偶尔可以伪装潇洒自由
+&lt;/p&gt;
+&lt;p&gt;
+	心里慌了起来自己喝酒
+&lt;/p&gt;
+&lt;p&gt;
+	以为你只是一个美丽的偶然
+&lt;/p&gt;
+&lt;p&gt;
+	垂怜我不经意降落
+&lt;/p&gt;
+&lt;p&gt;
+	谁知道你不同 谁知道你不走
+&lt;/p&gt;
+&lt;p&gt;
+	拥抱着我说终于找到了我
+&lt;/p&gt;
+&lt;p&gt;
+	你 看穿我的冷漠 亲吻我的烦忧
+&lt;/p&gt;
+&lt;p&gt;
+	不在乎我曾经的错
+&lt;/p&gt;
+&lt;p&gt;
+	如果不是你的款款温柔
+&lt;/p&gt;
+&lt;p&gt;
+	还以为真爱 只是一个传说
+&lt;/p&gt;
+&lt;p&gt;
+	请 相信我的承诺 虽然有点笨拙
+&lt;/p&gt;
+&lt;p&gt;
+	但我看见幸福的风
+&lt;/p&gt;
+&lt;p&gt;
+	如果我把我的手放在背后
+&lt;/p&gt;
+&lt;p&gt;
+	愿不愿意牵着一起走
+&lt;/p&gt;
+&lt;p&gt;
+	以为你只是一个美丽的偶然
+&lt;/p&gt;
+&lt;p&gt;
+	垂怜我不经意降落
+&lt;/p&gt;
+&lt;p&gt;
+	谁知道你不同 谁知道你不走
+&lt;/p&gt;
+&lt;p&gt;
+	拥抱着我说终于找到了我
+&lt;/p&gt;
+&lt;p&gt;
+	你 看穿我的冷漠 亲吻我的烦忧
+&lt;/p&gt;
+&lt;p&gt;
+	不在乎我曾经的错
+&lt;/p&gt;
+&lt;p&gt;
+	如果不是你的款款温柔
+&lt;/p&gt;
+&lt;p&gt;
+	还以为真爱 只是一个传说
+&lt;/p&gt;
+&lt;p&gt;
+	请 相信我的承诺 虽然有点笨拙
+&lt;/p&gt;
+&lt;p&gt;
+	但我看见幸福的风
+&lt;/p&gt;
+&lt;p&gt;
+	如果我把我的手放在背后
+&lt;/p&gt;
+&lt;p&gt;
+	愿不愿意牵着一起走
+&lt;/p&gt;
+&lt;p&gt;
+	你 看穿我的冷漠 亲吻我的烦忧
+&lt;/p&gt;
+&lt;p&gt;
+	不在乎我曾经的错
+&lt;/p&gt;
+&lt;p&gt;
+	如果不是你的款款温柔
+&lt;/p&gt;
+&lt;p&gt;
+	还以为真爱 只是一个传说
+&lt;/p&gt;
+&lt;p&gt;
+	请 相信我的承诺 虽然有点笨拙
+&lt;/p&gt;
+&lt;p&gt;
+	但我看见幸福的风
+&lt;/p&gt;
+&lt;p&gt;
+	如果我把我的手放在背后
+&lt;/p&gt;
+&lt;p&gt;
+	愿不愿意牵着一起走
+&lt;/p&gt;
+&lt;p&gt;
+	愿不愿意牵着到最后
+&lt;/p&gt;');
+INSERT INTO `tf_addonarticle` (`id`,`aid`,`content`) VALUES ('8','8','我们做的任何的决定，都没有错；但是，有可能会错过；错过你一辈子也找不回的曾今！');
 
 -- ----------------------------
 -- Table structure for tf_addonvideo
@@ -78,13 +215,19 @@ CREATE TABLE `tf_archive` (
   `update_time` int(10) NOT NULL COMMENT '编辑时间',
   PRIMARY KEY (`id`),
   KEY `typeid` (`typeid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_archive
 -- ----------------------------
-INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('1','1','addonarticle','文章1','','0','','','','1','','','文章模型','0','1','1502788194','1502788347');
-INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('2','3','addonvideo','视频1','','0','','','','1','','','视频模型','0','1','1502788216','1502788364');
-INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('3','4','addonalbum','相册1','','0','','','','1','','','相册模型','0','1','1502788245','1502788379');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('1','6','addonarticle','标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！','','0','p','https://www.baidu.com/','/uploads/image/20170826/d7adf07b02ad855e948b032bb7720907.jpg','42','','Guestbook','标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！标题很长，还有简介，还有图！！','17','1','1500698768','1504596689');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('2','5','addonarticle','只有标题','','0','','','','42','','','','6','1','1500997429','1504596694');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('3','7','addonarticle','只有简介，没有图','','0','','','','42','','','只有简介，没有图','61','1','1500997910','1504596694');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('4','9','addonarticle','你在等全世界的樱花，而我在樱花树下等你','','0','p','','/uploads/image/20170826/a2f7e2021ed0494197a2dc7da220d93e.jpg','42','','','','1','1','1504578094','1504596695');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('5','9','addonarticle','所谓缘分，就是遇见了该遇见的人','','0','','','','42','','','所谓缘分，就是遇见了该遇见的人','3','1','1504578161','1504596695');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('6','9','addonarticle','每一次遗憾都是对生命的一种肯定','','0','','','','42','','','每一次遗憾都是对生命的一种肯定','14','1','1504578196','1504596696');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('7','8','addonarticle','幸福的风','','0','','','','42','','','以为我永远只能一个人生活，孤单地快乐哀愁，偶尔可以伪装潇洒自由，心里慌了起来自己喝酒，以为你只是一个美丽的偶然，垂怜我不经意降落，谁知道你不同，谁知道你不走，拥抱着我说终于找到了我，你 看穿我的冷漠，亲吻我的烦忧，不在乎我曾经的错，如果不是你的款款温柔，还以为真爱只是一个传说。','29','1','1504578436','1504691265');
+INSERT INTO `tf_archive` (`id`,`typeid`,`mod`,`title`,`title_color`,`title_weight`,`flag`,`jumplink`,`litpic`,`writer`,`source`,`keywords`,`description`,`click`,`status`,`create_time`,`update_time`) VALUES ('8','8','addonarticle','我们做的任何的决定，都没有错；但是，有可能会错过；错过你一辈子也找不回的曾今','','0','p','','/uploads/image/20170905/2c5f6ec66e1c707dec1e0c2887066b8a.jpg','42','','','我们做的任何的决定，都没有错；但是，有可能会错过；错过你一辈子也找不回的曾今。
+希望我们的梦想，永远不会被忘记，希望有一天，我可以再见面！','147','1','1504595575','1504604570');
 
 -- ----------------------------
 -- Table structure for tf_arctype
@@ -110,15 +253,39 @@ CREATE TABLE `tf_arctype` (
   `create_time` int(10) NOT NULL COMMENT '创建时间',
   `update_time` int(10) NOT NULL COMMENT '编辑时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_arctype
 -- ----------------------------
-INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('1','0','文章','21','_self','','article','','','1','1','','','list_article','article_article','20','1502779862','1502779862');
-INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('2','0','单页','20','_self','','page','','','2','1','','','list_page','article_page','20','1502779907','1502779907');
-INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('3','0','视频','28','_self','','video','','','3','1','','','list_video','article_video','20','1502779955','1502779955');
-INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('4','0','相册','27','_self','','album','','','4','1','','','list_image','article_image','20','1502779978','1502787624');
-INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('5','0','外链百度','22','_self','https://www.baidu.com/','jump','','','5','1','','','list_article','article_article','20','1502780039','1502853679');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('1','0','文档','21','_self','','blog','','','1','1','博客k','博客d','list_article','article_article','1','1500694046','1504685181');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('2','0','留言','20','_self','','msg','','留言','2','1','留言k','留言d','list_page','article_page','20','1500695122','1504599199');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('3','0','网站统计','20','_self','','pie','','单页统计数据','3','1','统计k','统计d','list_page','article_page','20','1500695130','1504687134');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('4','0','更新日志','20','_self','','log','','&lt;p&gt;
+	这里的更新日志慢慢完善！！！
+&lt;/p&gt;
+&lt;p&gt;
+	这里的更新日志慢慢完善！！！
+&lt;/p&gt;
+&lt;p&gt;
+	这里的更新日志慢慢完善！！！
+&lt;/p&gt;
+&lt;p&gt;
+	这里的更新日志慢慢完善！！！
+&lt;/p&gt;
+&lt;p&gt;
+	这里的更新日志慢慢完善！！！
+&lt;/p&gt;
+&lt;p&gt;
+	这里的更新日志慢慢完善！！！
+&lt;/p&gt;
+&lt;p&gt;
+	这里的更新日志慢慢完善！！！
+&lt;/p&gt;','4','1','关于k','关于d','list_page','article_page','20','1500695142','1504687097');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('5','1','tp5','21','_self','','tp5','','','1','1','tp5k','tp5d','list_article','article_article','1','1500696489','1504576344');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('6','1','css','21','_self','','css','','','2','1','cssk','cssd','list_article','article_article','1','1500696800','1504576365');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('7','1','php','21','_self','','php','','','3','1','phpk','phpd','list_article','article_article','1','1500696912','1504576360');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('8','1','爱音乐','21','_self','','music','','','8','1','','','list_article','article_article','1','1504576437','1504576495');
+INSERT INTO `tf_arctype` (`id`,`pid`,`typename`,`mid`,`target`,`jumplink`,`dirs`,`litpic`,`content`,`sorts`,`status`,`keywords`,`description`,`templist`,`temparticle`,`pagesize`,`create_time`,`update_time`) VALUES ('9','1','爱生活','21','_self','','life','','','9','1','','','list_article','article_article','1','1504576487','1504576487');
 
 -- ----------------------------
 -- Table structure for tf_arctype_mod
@@ -358,13 +525,13 @@ CREATE TABLE `tf_config` (
 -- ----------------------------
 -- Records of tf_config
 -- ----------------------------
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('1','title','网站的标题','web','网站标题','网站标题【title】','1','1','text','','1493863845','1501663526');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('2','logo','/static/global/face/logo.png','web','网站LOGO','网站LOGO，一般用于导航或底部的LOGO图片','2','1','image','','1493864083','1501663570');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('1','title','苏晓信','web','网站标题','网站标题【title】','1','1','text','','1493863845','1501663526');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('2','logo','/uploads/image/20170826/a2f7e2021ed0494197a2dc7da220d93e.jpg','web','网站LOGO','网站LOGO，一般用于导航或底部的LOGO图片','2','1','image','','1493864083','1501663570');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('3','person','苏晓信','web','联系人','联系人','3','1','text','','1493864150','1493864480');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('4','address','重庆杨家坪直港大道','web','联系地址','联系地址','4','1','text','','1493864266','1493864485');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('5','keywords','网站建设,APP开发','web','网站关键字','网站关键字，网站首页的【keywords】','5','1','text','','1493864340','1501663645');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('6','description','网站建设,APP开发','web','网站描述','网站描述，网站首页的【description】','6','1','textarea','','1493864454','1501663673');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('7','copyright','Copyright © 2016-2017','web','网站备案号','网站备案号','7','1','text','','1493864547','1493864568');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('4','address','184278846','web','联系地址','联系地址','4','1','text','','1493864266','1493864485');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('5','keywords','苏晓信-keywords','web','网站关键字','网站关键字，网站首页的【keywords】','5','1','text','','1493864340','1501663645');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('6','description','苏晓信-description','web','网站描述','网站描述，网站首页的【description】','6','1','textarea','','1493864454','1501663673');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('7','copyright','Copyright © 2017-2018 苏晓信','web','网站备案号','网站备案号','7','1','text','','1493864547','1493864568');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('8','isbrowse','0','system','系统浏览模式','系统浏览模式','1','1','select','','1494066335','1502851782');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('9','islog','0','system','是否开启系统日志','是否开启系统日志','2','1','select','','1494066832','1502851783');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('10','image_format','jpg,gif,jpeg,png,bmp','up','上传图片格式','上传图片格式','1','1','text','','1494067463','1499080988');
@@ -505,7 +672,7 @@ CREATE TABLE `tf_user` (
 -- ----------------------------
 -- Records of tf_user
 -- ----------------------------
-INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','14','1502781914','1502785463','127.0.0.1','1502957866','127.0.0.1','1');
+INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','17','1502781914','1502785463','127.0.0.1','1504776577','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('2','test1','e10adc3949ba59abbe56e057f20f883e','测试账号','','','1','5','1502782875','1502783821','127.0.0.1','1502785133','106.92.245.226','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('3','不高兴','e10adc3949ba59abbe56e057f20f883e','不高兴','','','1','0','1502785283','1502785283','127.0.0.1','1502785283','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('4','没头脑','e10adc3949ba59abbe56e057f20f883e','没头脑','','','1','0','1502785316','1502785316','127.0.0.1','1502785316','127.0.0.1','1');
