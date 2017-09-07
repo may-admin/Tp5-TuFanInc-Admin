@@ -1,0 +1,26 @@
+{volist name="dataList" id="vo"}
+<div class="side-box bg-white">
+    <div class="article">
+        <h1><a href="{$vo.arcurl}" class="ui-ellipsis">{$vo.title}</a></h1>
+        <div class="litpic">
+            {notempty name="$vo['litpic']"}
+            <img src="{$vo.litpic}" />
+            {/notempty}
+            {notempty name="$vo['description']"}
+            <p>{$vo.description}</p>
+            {/notempty}
+        </div>
+        <div class="tags clearfix">
+            <div class="tags-l col-sm-4">
+                <i class="fa fa-tags"> {$vo->Arctype->typename}</i>
+            </div>
+            <div class="tags-r col-sm-8">
+                <i class="fa fa-clock-o"> {$vo.create_time|strtotime|date='Y-m-d',###}</i>
+                <i class="fa fa-eye"> {$vo.click}</i>
+                <i class="fa fa-commenting-o"> 0</i>
+                <i class="fa fa-thumbs-o-up"> 0</i>
+            </div>
+        </div>
+    </div>
+</div>
+{/volist}

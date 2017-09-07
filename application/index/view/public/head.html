@@ -1,0 +1,22 @@
+{if condition=" $box_is_pjax != 1 "}
+<a href="#" class="top-nav-toggle"><i></i></a>
+
+<div class="scr-t">
+    {php} $banner = banners(3, 1);{/php}
+    <div class="top-info" style="background-image:url({$banner.0.litpic});">
+        <img class="avatar" src="{:confv('logo')}" />
+        <div class="mlz">{$banner.0.info}</div>
+    </div>
+    <div class="nav-box">
+        <div class="container">
+            <div class="row">
+                <nav class="navs">
+                    <ul>
+                        {:channel(0, $parent['id'], '首页', '<li>', '</li>')}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}

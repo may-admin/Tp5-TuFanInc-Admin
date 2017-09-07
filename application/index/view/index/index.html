@@ -1,16 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>Index</title>
-</head>
-<body>
-<div style="margin:0 auto; padding-top:200px; width:1000px; text-align:center;">
-    <a style="font-size:30px; color:red; font-weight:bold;" href="{:url('admin/index/index')}" >Amdin</a>
-    <p>测试账号：admin</p>
-    <p>测试密码：123456</p>
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+{/block}
+
+{block name="pjax_container"}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" >
+            {include file="inc/left" /}
+        </div>
+        
+        <div class="col-sm-8" >
+            <div class="side-box bg-white">
+                <div class="go-admin">
+                    <a href="/admin">点我去后台</a>
+                    <p>测试账号：admin</p>
+                    <p>测试密码：123456</p>
+                    <p>系统更新会第一时间在群通知</p>
+                    <p>一些资料也能在群里下载</p>
+                </div>
+            </div>
+            
+            <div class="new-arc-container">
+                <div class="new-arc-box"></div>
+                <button class="btn btn-block btn-success" id="new-arc-btn" data-page="1" 
+                data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 加载中..." >点击加载</button>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
-</html>
+
+<script>
+$(function(){
+    $('body').off('click', '#new-arc-btn');
+    $('body').on("click", '#new-arc-btn', function(event){
+        var _this = $(this);
+        var page = _this.data('page');
+        _this.button('loading');
+        $.ajax({
+            type : "get",
+            url : "/index/index/newarc/page/"+page,
+            success : function(html) {
+                if( html != ''){
+                    $('.new-arc-box').append(html);
+                    _this.data("page", page+1);   //分页数+1
+                    _this.button('reset');
+                }else{
+                    _this.html('没有更多');
+                }
+            }
+        });
+    });
+    $('#new-arc-btn').trigger("click");
+})
+</script>
+{/block}

@@ -1,0 +1,25 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{$arctype.typename} - {:confv('title')}</title>
+<meta name="keywords" content="{$arctype.keywords}">
+<meta name="description" content="{$arctype.description}">
+{/block}
+
+{block name="pjax_container"}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" >
+            {include file="inc/left" /}
+        </div>
+        
+        <div class="col-sm-8" >
+            <div class="side-box bg-white">
+                <div class="view-page">
+                    {$arctype.content}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

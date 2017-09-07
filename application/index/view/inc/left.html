@@ -1,0 +1,43 @@
+<div class="user-info bg-white hidden-xs">
+    <div class="avatar">
+        <img src="{:confv('logo')}" />
+    </div>
+    <div class="infos bg-theme1">
+        <div class="name">{:confv('person')}</div>
+        <div class="introduce">QQ群：{:confv('address')}</div>
+    </div>
+</div>
+<div class="notice bg-white hidden-xs">公告：更新会第一时间在群里通知</div>
+<div class="search bg-theme1 hidden-xs">
+    <div class="title">搜索</div>
+    <div class="search-box bg-white clearfix">
+        <form action="" method="get" >
+            <div class="col-sm-8 col-xs-8" >
+                <input type="text" class="texts" name="" placeholder="请输入搜索输入内容" />
+            </div>
+            <div class="col-sm-4 col-xs-4" >
+                <button class="btn bg-theme1" type="submit">搜索</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="side-box bg-white hidden-xs">
+    <div class="title bg-theme1">文档分类</div>
+    <div class="category clearfix">
+        {:channel(1, '', '', '', '', 'col-sm-4 col-xs-6 ui-ellipsis')}
+    </div>
+</div>
+
+<div class="side-box bg-white hidden-xs">
+    <div class="title bg-theme1">热门文档</div>
+    <ul class="lists">
+        {php} $hotarc = arclist(1, 10, '', 'click desc'); {/php}
+        {volist name="hotarc" id="vo"}
+        <li class="clearfix">
+            <a href="{$vo.arcurl}" class="col-sm-8 col-xs-8 ui-ellipsis">{$vo.title}</a>
+            <span class="col-sm-4 col-xs-4 ui-ellipsis">{$vo.create_time|strtotime|date='Y-m-d',###}</span>
+        </li>
+        {/volist}
+    </ul>
+</div>

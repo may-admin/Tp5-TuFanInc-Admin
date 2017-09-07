@@ -1,0 +1,28 @@
+{if condition=" $box_is_pjax != 1 "}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+{/if}
+{block name="title"}{/block}
+{block name="load_top"}{include file="public/load_top" /}{/block}
+{if condition=" $box_is_pjax != 1 "}
+</head>
+<body>
+<div class="body-box">
+{/if}
+    {block name="head"}{include file="public/head" /}{/block}
+    <div class="scr-c" id="pjax-container" >
+        {block name="pjax_container"}{/block}
+        {block name="foot"}{include file="public/foot" /}{/block}
+    </div>
+{if condition=" $box_is_pjax != 1 "}
+</div>
+{/if}
+{block name="load_bottom"}{include file="public/load_bottom" /}{/block}
+{if condition=" $box_is_pjax != 1 "}
+</body>
+</html>
+{/if}

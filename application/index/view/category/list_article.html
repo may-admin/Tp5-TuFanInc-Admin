@@ -1,0 +1,55 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{$arctype.typename} - {:confv('title')}</title>
+<meta name="keywords" content="{$arctype.keywords}">
+<meta name="description" content="{$arctype.description}">
+{/block}
+
+{block name="pjax_container"}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" >
+            {include file="inc/left" /}
+        </div>
+        
+        <div class="col-sm-8" >
+            <div class="side-box bg-white">
+                <div class="title bg-theme1">文档分类</div>
+                <div class="category clearfix">
+                    {:channel(1, $arctype['id'], '', '', '', 'col-sm-4 col-xs-6 ui-ellipsis')}
+                </div>
+            </div>
+            
+            {volist name="dataList" id="vo"}
+            <div class="side-box bg-white">
+                <div class="article">
+                    <h1><a href="{$vo.arcurl}" class="ui-ellipsis">{$vo.title}</a></h1>
+                    <div class="litpic">
+                        {notempty name="$vo['litpic']"}
+                        <img src="{$vo.litpic}" />
+                        {/notempty}
+                        {notempty name="$vo['description']"}
+                        <p>{$vo.description}</p>
+                        {/notempty}
+                    </div>
+                    <div class="tags clearfix">
+                        <div class="tags-l col-sm-4">
+                            <i class="fa fa-tags"> {$vo->Arctype->typename}</i>
+                        </div>
+                        <div class="tags-r col-sm-8">
+                            <i class="fa fa-clock-o"> {$vo.create_time|strtotime|date='Y-m-d',###}</i>
+                            <i class="fa fa-eye"> {$vo.click}</i>
+                            <i class="fa fa-commenting-o"> 0</i>
+                            <i class="fa fa-thumbs-o-up"> 0</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/volist}
+            
+            {$dataList->render()}
+        </div>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,44 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{$archive.title} - {:confv('title')}</title>
+<meta name="keywords" content="{$archive.keywords}">
+<meta name="description" content="{$archive.description}">
+{/block}
+
+{block name="pjax_container"}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" >
+            {include file="inc/left" /}
+        </div>
+        
+        <div class="col-sm-8" >
+            <div class="side-box bg-white">
+                <div class="view-page">
+                    <h4 class="arc-title">{$archive.title}</h4>
+                    <div class="arc-info">
+                        <a href="#"><i class="fa fa-tags"> {$arctype.typename}</i></a>
+                        <span><i class="fa fa-clock-o"> {$archive.create_time}</i></span>
+                        <span><i class="fa fa-eye"> {$archive.click}</i></span>
+                        <span><i class="fa fa-commenting-o"> 0</i></span>
+                        <span><i class="fa fa-thumbs-o-up"> 0</i></span>
+                    </div>
+                    {notempty name="$archive['litpic']"}
+                    <div class="arc-litpic">
+                        <img src="{$archive.litpic}" />
+                    </div>
+                    {/notempty}
+                    <div class="arc-content">
+                        {$archive.addondata.content}
+                    </div>
+                    <div class="arc-next">
+                        {:prenext($archive)}
+                    </div>
+                    {:click($archive)}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
