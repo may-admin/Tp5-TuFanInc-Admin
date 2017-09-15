@@ -30,4 +30,13 @@ return [
     'print_position_7'      => '左下角',
     'print_position_8'      => '下居中',
     'print_position_9'      => '右下角',
+    
+    'charset_utf8'          => '国际化编码(utf-8)',
+    'charset_gb2312'        => '简体中文',
+    
+    'email_text'            => '请在输入框中输入你要接收邮件的邮箱并点击右侧发送',
+    'email_test'            => '测试邮箱',
+    'email_send'            => '发送',
+    'email_error'           => '请填写正确的邮箱格式',
+    'email_success'         => '邮件发送成功，请到相应的邮箱查看邮件',
 ];

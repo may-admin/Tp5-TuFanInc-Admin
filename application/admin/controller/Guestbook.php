@@ -18,7 +18,7 @@ class Guestbook extends Common
     {
         $where = [];
         if (input('get.search')){
-            $where['mid|uid'] = ['like', '%'.input('get.search').'%'];
+            $where['uid|title|email'] = ['like', '%'.input('get.search').'%'];
         }
         if (input('get._sort')){
             $order = explode(',', input('get._sort'));

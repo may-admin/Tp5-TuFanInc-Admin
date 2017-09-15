@@ -181,6 +181,10 @@ $(function(){
         autoHeightMode: false,   //开启自动高度模式
         afterBlur: function () { this.sync(); }   //同步编辑器数据
     });
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
 })
 </script>
 {/block}

@@ -5,10 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>登陆</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-{load href="/static/global/bootstrap/css/bootstrap.min.css" /}
-{load href="/static/global/bootstrap/css/font-awesome.min.css" /}
-{load href="/static/global/Amaranjs/amaran.min.css" /}
-{load href="/static/system/dist/css/AdminLTE.min.css" /}
+{load href="__static__/global/bootstrap/css/bootstrap.min.css" /}
+{load href="__static__/global/bootstrap/css/font-awesome.min.css" /}
+{load href="__static__/global/Amaranjs/amaran.min.css" /}
+{load href="__static__/system/dist/css/AdminLTE.min.css" /}
 <!--[if lt IE 9]>
 {load href="/static/system/dist/js/html5shiv.min.js" /}
 {load href="/static/system/dist/js/respond.min.js" /}
@@ -21,7 +21,7 @@
         <p class="login-box-msg">请填写用户名密码登陆系统</p>
         <form action="{:url('Login/checkLogin')}" method="POST" onsubmit="return false" >
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" name="username" placeholder="用户名">
+                <input type="text" class="form-control" name="username" placeholder="用户名">
                 <span class="glyphicon form-control-feedback fa fa-user fa-lg"></span>
             </div>
             <div class="form-group has-feedback">
@@ -43,11 +43,11 @@
         </form>
     </div>
 </div>
-{load href="/static/global/jQuery/jquery-2.2.3.min.js" /}
-{load href="/static/global/bootstrap/js/bootstrap.min.js" /}
-{load href="/static/global/jQuery/jquery.form.js" /}
-{load href="/static/global/jQuery-gDialog/animate.min.css" /}
-{load href="/static/global/Amaranjs/jquery.amaran.min.js" /}
-{load href="/static/system/dist/js/login.js" /}
+{load href="__static__/global/jQuery/jquery-2.2.3.min.js" /}
+{load href="__static__/global/bootstrap/js/bootstrap.min.js" /}
+{load href="__static__/global/jQuery/jquery.form.js" /}
+{load href="__static__/global/jQuery-gDialog/animate.min.css" /}
+{load href="__static__/global/Amaranjs/jquery.amaran.min.js" /}
+{load href="__static__/system/dist/js/login.js" /}
 </body>
 </html>

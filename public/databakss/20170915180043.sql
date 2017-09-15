@@ -2,7 +2,7 @@
 MySQL Database Backup Tools
 Server:127.0.0.1:
 Database:tp_base_com
-Data:2017-09-07 18:02:10
+Data:2017-09-15 18:00:43
 */
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
@@ -31,7 +31,7 @@ CREATE TABLE `tf_addonarticle` (
   `content` text COMMENT '内容',
   PRIMARY KEY (`id`),
   KEY `aid` (`aid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_addonarticle
 -- ----------------------------
@@ -331,7 +331,7 @@ CREATE TABLE `tf_auth_group` (
 -- ----------------------------
 -- Records of tf_auth_group
 -- ----------------------------
-INSERT INTO `tf_auth_group` (`id`,`module`,`level`,`title`,`status`,`rules`,`notation`,`pic`,`recom`,`create_time`,`update_time`) VALUES ('1','admin','1090','超级管理员','1','1,50,57,58,59,60,61,62,63,64,51,52,53,54,2,3,29,30,31,56,4,32,33,34,55,5,11,12,13,6,14,27,28,70,94,95,96,97,71,72,73,39,40,41,42,43,46,44,47,65,48,49,92,93,80,81,82,83,84,85,86,87,88,89,90,91,98,99,100,101,102,103,104','我能干任何事','#dd4b39','0','1502780231','1502852072');
+INSERT INTO `tf_auth_group` (`id`,`module`,`level`,`title`,`status`,`rules`,`notation`,`pic`,`recom`,`create_time`,`update_time`) VALUES ('1','admin','1090','超级管理员','1','1,50,57,58,59,60,61,62,63,64,51,52,53,54,2,3,29,30,31,56,4,32,33,34,55,5,11,12,13,6,14,27,28,70,94,95,96,97,71,72,73,39,40,41,42,43,46,44,45,47,65,48,49,92,93,80,81,82,83,84,85,86,87,88,89,90,91,98,99,100,101,102,103,104','我能干任何事','#dd4b39','0','1502780231','1505469545');
 INSERT INTO `tf_auth_group` (`id`,`module`,`level`,`title`,`status`,`rules`,`notation`,`pic`,`recom`,`create_time`,`update_time`) VALUES ('2','admin','1','后台浏览','1','1,50,57,61,51,2,3,4,5,6,70,94,71,39,44,47,65,48,49,92,80,84,88,98,99,101','只能查看列表','#f39c12','0','1502784113','1502852075');
 
 -- ----------------------------
@@ -368,7 +368,7 @@ CREATE TABLE `tf_auth_rule` (
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态：为1正常，为0禁用',
   `ismenu` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否导航',
-  `condition` varchar(200) NOT NULL COMMENT '规则表达式，为空表示存在就验证，不为空表示按照条件验证',
+  `condition` varchar(200) DEFAULT NULL COMMENT '规则表达式，为空表示存在就验证，不为空表示按照条件验证',
   `icon` varchar(50) DEFAULT NULL COMMENT '节点图标',
   `sorts` mediumint(8) DEFAULT '50' COMMENT '排序',
   `create_time` int(10) NOT NULL COMMENT '创建时间',
@@ -408,6 +408,7 @@ INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`s
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('42','40','admin','3','Config/edit','编辑字段','1','1','0','','','2','1493809511','1493809511');
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('43','40','admin','3','Config/delete','删除字段','1','1','0','','','3','1493809555','1493809555');
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('44','39','admin','2','Config/web','站点配置','1','1','1','','fa fa-desktop','2','1493809933','1494439144');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('45','39','admin','2','Config/system','系统配置','1','1','1','','fa fa-dot-circle-o','3','1493810207','1494439156');
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('46','40','admin','3','Config/save','保存字段','1','1','0','','','4','1494066111','1494066119');
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('47','39','admin','2','Config/up','上传配置','1','1','1','','fa fa-upload','4','1494067075','1494439160');
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('48','0','admin','1','leftTool','站长工具','1','1','1','','fa fa-wrench','1080','1494432073','1501768515');
@@ -521,7 +522,7 @@ CREATE TABLE `tf_config` (
   PRIMARY KEY (`id`),
   KEY `k` (`k`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_config
 -- ----------------------------
@@ -532,8 +533,8 @@ INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`t
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('5','keywords','苏晓信-keywords','web','网站关键字','网站关键字，网站首页的【keywords】','5','1','text','','1493864340','1501663645');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('6','description','苏晓信-description','web','网站描述','网站描述，网站首页的【description】','6','1','textarea','','1493864454','1501663673');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('7','copyright','Copyright © 2017-2018 苏晓信','web','网站备案号','网站备案号','7','1','text','','1493864547','1493864568');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('8','isbrowse','0','system','系统浏览模式','系统浏览模式','1','1','select','','1494066335','1502851782');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('9','islog','0','system','是否开启系统日志','是否开启系统日志','2','1','select','','1494066832','1502851783');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('8','isbrowse','0','system','系统浏览模式','系统浏览模式','1','0','select','','1494066335','1505468914');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('9','islog','0','system','是否开启系统日志','是否开启系统日志','2','0','select','','1494066832','1505468915');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('10','image_format','jpg,gif,jpeg,png,bmp','up','上传图片格式','上传图片格式','1','1','text','','1494067463','1499080988');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('11','image_size','5242880','up','上传文件大小','1024：1KB，1048576：1MB，5242880：5MB。建议不要超过5MB，避免文件上传失败','5','1','text','','1494067564','1501572699');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('12','image_print','/static/global/face/logo.png','up','水印图片','水印图片，可为上传的图片添加水印，开启了图片水印功能，请必须上传水印图片','8','1','image','','1494067681','1501664409');
@@ -551,6 +552,7 @@ INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`t
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('24','sms_pwd_tpl_code','【阿里大于】SMS_00000002','sms','短信密码找回模板','短信密码找回模板','6','1','text','','1496208571','1500478651');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('25','image_url','','up','图片上传域名地址','图片上传域名地址，图片路径保存数据库是否带域名，不建议填写，除非很清楚怎么使用','11','1','text','','1496295604','1501664181');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('26','sms_end_time','【阿里大于】30','sms','短信验证时限','短信验证时单位：分，只填整数','4','1','text','','1498101884','1500478650');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('27','login_time','60','system','登陆超时时限','登陆系统多久时间不操作，重新登陆系统，数字整数【10:10秒】','3','1','text','','1505468873','1505468873');
 
 -- ----------------------------
 -- Table structure for tf_flink
@@ -672,7 +674,7 @@ CREATE TABLE `tf_user` (
 -- ----------------------------
 -- Records of tf_user
 -- ----------------------------
-INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','17','1502781914','1502785463','127.0.0.1','1504776577','127.0.0.1','1');
+INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','21','1502781914','1502785463','127.0.0.1','1505469616','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('2','test1','e10adc3949ba59abbe56e057f20f883e','测试账号','','','1','5','1502782875','1502783821','127.0.0.1','1502785133','106.92.245.226','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('3','不高兴','e10adc3949ba59abbe56e057f20f883e','不高兴','','','1','0','1502785283','1502785283','127.0.0.1','1502785283','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('4','没头脑','e10adc3949ba59abbe56e057f20f883e','没头脑','','','1','0','1502785316','1502785316','127.0.0.1','1502785316','127.0.0.1','1');

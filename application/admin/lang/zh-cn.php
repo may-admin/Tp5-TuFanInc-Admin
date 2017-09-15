@@ -33,10 +33,12 @@ return [
     'auth_no_exist'     => '没有权限',
     'user_stop'         => '用户被停用',
     'no-up-file'        => '没有上传文件',
-    'isbrowse'          => '当前处于测试阶段，某些操作手动禁止',
+    'isbrowse'          => '当前处于浏览模式，不允许修改任何数据',
     'clean_cache'       => '清除缓存',
     'web_home'          => '网站首页',
     'Upload'            => '上传',
+    'login_other'       => '账户已在其他地方登陆，请重新登录',
+    'login_timeout'     => '登陆超时',
     
     //Select-Option选项字段
     'please_choose'     => '请选择',

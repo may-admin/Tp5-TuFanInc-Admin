@@ -14,4 +14,11 @@
         <h4><i class="icon fa fa-check"></i>{$Think.lang.clean_cache} - {$Think.lang.action_success}</h4>
     </div>
 </section>
+<script type="text/javascript">
+$(function(){
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
+})
+</script>
 {/block}

@@ -18,7 +18,7 @@ class Uploads extends Controller
     public function _initialize()
     {
         parent::_initialize();
-        if (!UID){
+        if (!session('userId')){
             exit();
         }
         $this->up_type = input('get.dir');   //上传文件类型

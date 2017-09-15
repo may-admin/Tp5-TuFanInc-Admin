@@ -160,6 +160,10 @@ $(function () {
             maintainAspectRatio: false
         }
     });
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
 });
 </script>
 {/block}

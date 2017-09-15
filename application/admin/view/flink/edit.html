@@ -104,6 +104,10 @@ $(function(){
     
     /*ajax页面加载icheck，有该控件的页面才需要*/
     $(".select2").select2({language:"zh-CN"});
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
 })
 </script>
 {/block}

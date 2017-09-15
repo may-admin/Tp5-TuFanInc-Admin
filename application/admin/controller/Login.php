@@ -3,7 +3,6 @@ namespace app\admin\controller;
 
 use think\Controller;
 use app\admin\model\User as Users;
-use app\admin\model\LoginLog;
 
 class Login extends Controller
 {
@@ -43,7 +42,7 @@ class Login extends Controller
                 }else{
                     // 更新登陆信息
                     $ip = request()->ip();
-                    //$ip = '106.92.245.226';
+                    //$ip = '111.10.243.171';
                     $updata = [
                         'logins' => $user['logins']+1,
                         'last_time' => time(),
@@ -61,10 +60,14 @@ class Login extends Controller
                     cookie('uname', $user['username']);
                     cookie('uid', $user['id']);
                     cookie('avatar', $user->userInfo->avatar);
+                    $phpsessid = cookie('PHPSESSID');
+                    $config = new \app\admin\model\Config();
+                    $login_time = $config->where(['type'=>'system', 'k'=>'login_time'])->value('v');
+                    cache('USER_LOGIN_'.$user['id'], $phpsessid, $login_time);   //唯一登陆标识[登录超时]
                     //登陆日志
                     $ipStr = @file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip=".$ip);   //.$ip
                     if ($ipStr != '-2'){
-                        $llModel = new LoginLog();
+                        $llModel = new \app\admin\model\LoginLog();
                         $s = mb_strpos($ipStr, '{');
                         $e = mb_strpos($ipStr, '}');
                         $ipJsonStr = mb_substr($ipStr, $s, $e-$s+1);
@@ -87,13 +90,17 @@ class Login extends Controller
         }
     }
     
-    public function loginOut()
+    public function loginOut($params='')
     {
         session('userId', null);
         cookie('name', null);
         cookie('uname', null);
         cookie('uid', null);
         cookie('avatar', null);
-        $this->redirect('Login/index');
+        $this->redirect('Login/index', $params);
+    }
+    
+    public function restLogin(){
+        return $this->fetch();
     }
 }
