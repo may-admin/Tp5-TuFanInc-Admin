@@ -2,7 +2,7 @@
 MySQL Database Backup Tools
 Server:127.0.0.1:
 Database:tp_base_com
-Data:2017-09-15 18:00:43
+Data:2017-09-16 21:49:20
 */
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
@@ -651,6 +651,25 @@ INSERT INTO `tf_module_class` (`id`,`title`,`action`,`sorts`,`status`,`create_ti
 INSERT INTO `tf_module_class` (`id`,`title`,`action`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('4','内页banner','banner','2002','1','1499310261','1499310326');
 
 -- ----------------------------
+-- Table structure for tf_token_user
+-- ----------------------------
+DROP TABLE IF EXISTS `tf_token_user`;
+CREATE TABLE `tf_token_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `uid` int(11) NOT NULL COMMENT '用户ID',
+  `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '类型【1、PC，2、移动端】',
+  `token` char(32) NOT NULL COMMENT 'token令牌',
+  `token_time` int(10) DEFAULT NULL COMMENT 'token令牌时限【PC登陆超时】',
+  `create_time` int(10) NOT NULL COMMENT '创建时间',
+  `update_time` int(10) NOT NULL COMMENT '编辑时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Records of tf_token_user
+-- ----------------------------
+INSERT INTO `tf_token_user` (`id`,`uid`,`type`,`token`,`token_time`,`create_time`,`update_time`) VALUES ('10','1','1','6691aefa51c979b7c40805f9644320c0','1505569820','1505569684','1505569684');
+
+-- ----------------------------
 -- Table structure for tf_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tf_user`;
@@ -674,7 +693,7 @@ CREATE TABLE `tf_user` (
 -- ----------------------------
 -- Records of tf_user
 -- ----------------------------
-INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','21','1502781914','1502785463','127.0.0.1','1505469616','127.0.0.1','1');
+INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','22','1502781914','1502785463','127.0.0.1','1505569684','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('2','test1','e10adc3949ba59abbe56e057f20f883e','测试账号','','','1','5','1502782875','1502783821','127.0.0.1','1502785133','106.92.245.226','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('3','不高兴','e10adc3949ba59abbe56e057f20f883e','不高兴','','','1','0','1502785283','1502785283','127.0.0.1','1502785283','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('4','没头脑','e10adc3949ba59abbe56e057f20f883e','没头脑','','','1','0','1502785316','1502785316','127.0.0.1','1502785316','127.0.0.1','1');
