@@ -7,6 +7,7 @@ use app\admin\model\AuthRule;
 use expand\Auth;
 use app\admin\model\Config;
 use app\admin\controller\Login;
+use app\admin\model\TokenUser;
 
 /**
  * admin基础控制器
@@ -42,6 +43,30 @@ class Common extends Controller
         }
         Lang::load(APP_PATH . 'admin/lang/'.$langField.'/'.CONTROLLER_NAME.'.php');
         
+        //权限判断
+        if(UID == -1){ return true; }   //配置账号跳过权限
+        
+        //跳过权限
+        $jump_auth = [
+            'Index/icons',
+            'Index/forms',
+            'Index/box',
+            'Index/tab',
+            'Index/tables',
+            'Index/question',
+            'Config/sendemail',
+        ];
+        if (in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $jump_auth)){
+            return true;
+        }
+        
+        $isbrowse = Config::getByK('isbrowse');
+        if ( $isbrowse['v'] == 1){   //是否开启浏览模式
+            if (input('post.')){
+                return ajaxReturn(lang('isbrowse'));
+            }
+        }
+        
         $auth = new Auth();
         if (!$auth->check(CONTROLLER_NAME.'/'.ACTION_NAME, UID)){
             $this->error(lang('auth_no_exist'), url('Login/index'));
@@ -56,6 +81,9 @@ class Common extends Controller
                 'ismenu' => 1,
                 'module' => 'admin',
             ];
+            if (UID != '-1'){
+                $where['status'] = 1;
+            }
             $arModel = new AuthRule();
             $lists =  $arModel->where($where)->order('sorts ASC,id ASC')->select();
             $treeClass = new \expand\Tree();
@@ -80,23 +108,25 @@ class Common extends Controller
         }
         $config = new Config();
         $login_time = $config->where(['type'=>'system', 'k'=>'login_time'])->value('v');
-        $old_login_cache = cache('USER_LOGIN_'.$userId);   //缓存登录标识
-        $new_login_cache = cookie('PHPSESSID');   //当前登录标识
-        if ($old_login_cache){
-            if($new_login_cache != $old_login_cache){   //其他地方登录
-                $this->loginBox(lang('login_other'));
+        $now_token = session('user_token');   //当前token
+        $tkModel = new TokenUser();
+        $db_token = $tkModel->where(['uid'=>$userId, 'type'=>'1'])->find();   //数据库token
+        if ($db_token['token'] != $now_token){   //其他地方登录
+            $this->loginBox(lang('login_other'));
+        }else{
+            if ($db_token['token_time'] < time()){   //登录超时
+                $this->loginBox(lang('login_timeout'));
             }else{
-                cache('USER_LOGIN_'.$userId, $new_login_cache, $login_time);
+                $token_time = time() + $login_time;
+                $data = ['token_time' => $token_time];
+                $tkModel->where(['uid'=>$userId, 'type'=>'1'])->update($data);
             }
-        }else{   //登录超时
-            $this->loginBox(lang('login_timeout'));
         }
         return;
     }
     
     private function loginBox($info='')
     {
-        //session('userId', null);
         if (request()->isGet()){
             $rest_login = 1;
             $this->assign('rest_login_info', $info);

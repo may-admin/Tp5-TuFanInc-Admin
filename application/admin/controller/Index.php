@@ -2,7 +2,6 @@
 namespace app\admin\controller;
 
 use think\Controller;
-use app\admin\model\Config;
 
 class Index extends Common
 {
@@ -212,18 +211,45 @@ class Index extends Common
      */
     public function cleanCache()
     {
-        $config = new Config();
-        $login_time = $config->where(['type'=>'system', 'k'=>'login_time'])->value('v');
-        $userId = session('userId');
-        $new_login_cache = cookie('PHPSESSID');   //当前登录标识
         if (request()->isPost()){
             deldir(RUNTIME_PATH);
-            cache('USER_LOGIN_'.$userId, $new_login_cache, $login_time);
             return ajaxReturn(lang('action_success'));
         }else{
             deldir(RUNTIME_PATH);
-            cache('USER_LOGIN_'.$userId, $new_login_cache, $login_time);
             return $this->fetch();
         }
+    }
+    
+    
+    
+    
+    public function icons()
+    {
+        return $this->fetch();
+    }
+    
+    public function forms()
+    {
+        return $this->fetch();
+    }
+    
+    public function box()
+    {
+        return $this->fetch();
+    }
+    
+    public function tab()
+    {
+        return $this->fetch();
+    }
+    
+    public function tables()
+    {
+        return $this->fetch();
+    }
+    
+    public function question()
+    {
+        return $this->fetch();
     }
 }
