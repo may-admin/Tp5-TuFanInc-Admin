@@ -1,0 +1,174 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.list}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>API接口列表</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> API接口列表</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    {include file="public/top_action" /}
+                    {include file="public/search" /}
+                </div>
+                <div class="box-body table-responsive">
+                    <table class="table table-bordered table-hover table-sort">
+                        <tr>
+                            <th width="35"><input type="checkbox" class="minimal checkbox-toggle"></th>
+                            <th>{$Think.lang.id}{:table_sort('id')}</th>
+                            <th>{$Think.lang.name}{:table_sort('name')}</th>
+                            <th>{$Think.lang.module}{:table_sort('module')}</th>
+                            <th>{$Think.lang.controller}{:table_sort('controller')}</th>
+                            <th>{$Think.lang.method}</th>
+                            <th>{$Think.lang.param}</th>
+                            <th>{$Think.lang.type}</th>
+                            <th>{$Think.lang.token}</th>
+                            <th>{$Think.lang.is_user_token}{:table_sort('is_user_token')}</th>
+                            <th>{$Think.lang.is_api_token}{:table_sort('is_api_token')}</th>
+                            <th>{$Think.lang.status}{:table_sort('status')}</th>
+                            <th>{$Think.lang.sorts}</th>
+                            <th width="202">{$Think.lang.action}</th>
+                        </tr>
+                        {volist name="dataList" id="vo"}
+                        <tr>
+                            <td><input type="checkbox" name="id[]" value="{$vo.id}" class="minimal"></td>
+                            <td>{$vo.id}</td>
+                            <td><span class="editable" data-pk="{$vo.id}" data-name="name" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.name}</span></td>
+                            <td><span class="editable" data-pk="{$vo.id}" data-name="module" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.module}</span></td>
+                            <td><span class="editable" data-pk="{$vo.id}" data-name="controller" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.controller}</span></td>
+                            <td><span class="editable" data-pk="{$vo.id}" data-name="method" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.method}</span></td>
+                            <td><span class="editable" data-pk="{$vo.id}" data-name="param" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.param}</span></td>
+                            <td>{$vo.type}</td>
+                            <td>
+                                {if condition=" !empty($vo['token']) "}
+                                {$vo.token}
+                                {else /}
+                                {:authAction(CONTROLLER_NAME.'/token', 'tokenapi', $vo.id)} 
+                                {/if}
+                            </td>
+                            <td>
+                                <input type="checkbox" class="check-switch"
+                                data-id="{$vo.id}" data-field="is_user_token" data-url="{:url('edit', 'id='.$vo['id'])}" 
+                                value="{$vo.is_user_token}" {if condition=" $vo['is_user_token'] == '1' "}checked="checked"{/if} />
+                            </td>
+                            <td>
+                                <input type="checkbox" class="check-switch"
+                                data-id="{$vo.id}" data-field="is_api_token" data-url="{:url('edit', 'id='.$vo['id'])}" 
+                                value="{$vo.is_api_token}" {if condition=" $vo['is_api_token'] == '1' "}checked="checked"{/if} />
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" data-id="{$vo.id}" data-field="status" 
+                                data-value="{$vo.status}" data-url="{:url('edit', 'id='.$vo['id'])}" 
+                                class='editimg fa {if condition=" $vo.status == 1 "}fa-check-circle text-green{else /}fa-times-circle text-red{/if}'></a>
+                            </td>
+                            <td>{$vo.sorts}</td>
+                            <td>
+                                {if condition=" !empty($vo['document']) "}
+                                {:authAction(CONTROLLER_NAME.'/viewDocument', 'view_document', ['id' => $vo.id])} 
+                                {else /}
+                                {:authAction(CONTROLLER_NAME.'/generateDocument', 'generate_document', $vo.id)} 
+                                {/if}
+                                {include file="public/list_action" /}
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+                <div class="box-footer clearfix">
+                    {$dataList->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    /*全选-反选*/
+    $('.checkbox-toggle').on('ifChecked', function(event){
+        var _this = $(this);
+        var _table = _this.closest('.table');
+        _table.find("tr td input[type='checkbox']").iCheck("check");
+    });
+    $('.checkbox-toggle').on('ifUnchecked', function(event){
+        var _this = $(this);
+        var _table = _this.closest('.table');
+        _table.find("tr td input[type='checkbox']").iCheck("uncheck");
+    });
+    
+    $('.editable').editable({
+        emptytext: "empty",
+        params: function(params) {      //参数
+            var data = {};
+            data['id'] = params.pk;
+            data[params.name] = params.value;
+            return data;
+        },
+        success: function(response, newValue) {
+            var res = $.parseJSON( response );
+            if(res.status == 1){
+            }else{
+                return res.info;
+            }
+        }
+    });
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
+    
+    $('.check-switch').bootstrapSwitch({
+        size:'mini',
+        onText: '{$Think.lang.switch1}',
+        offText: '{$Think.lang.switch0}',
+        onColor: 'primary',
+        offColor: 'danger',
+        onSwitchChange: function(event, state){
+            var pvalue;   //提交值
+            var _this = $(this);
+            var field = _this.data('field');
+            var id = _this.data('id');
+            var value = _this.val();   //当前值
+            var url = _this.data('url');
+            if ( value == 1){
+                pvalue = 0;
+            }else{
+                pvalue = 1;
+            }
+            var dataStr = jQuery.parseJSON( '{"id":"'+id+'","'+field+'":"'+pvalue+'"}' );   //字符串转json
+            $.ajax({
+                type : "post",
+                url : url,
+                dataType : 'json',
+                data : dataStr,
+                success : function(data) {
+                    if(data.status == '1'){
+                        _this.val(pvalue);
+                        $.amaran({'message':data.info});
+                    }else if(data.status == '2'){
+                        restlogin(data.info);
+                    }else{
+                        $.amaran({'message':data.info});
+                    }
+                }
+            });
+        }
+    });
+    
+})
+</script>
+{/block}

@@ -1,0 +1,130 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>API接口信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> API接口信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.name}</label>
+                                <div class="col-sm-7"><input class="form-control" name="name" value="{$data.name}" placeholder="{$Think.lang.name}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.module}</label>
+                                <div class="col-sm-7"><input class="form-control" name="module" value="{$data.module}" placeholder="{$Think.lang.module}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.controller}</label>
+                                <div class="col-sm-7"><input class="form-control" name="controller" value="{$data.controller}" placeholder="{$Think.lang.controller}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.method}</label>
+                                <div class="col-sm-7"><input class="form-control" name="method" value="{$data.method}" placeholder="{$Think.lang.method}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.param}</label>
+                                <div class="col-sm-7"><input class="form-control" name="param" value="{$data.param}" placeholder="{$Think.lang.param}"></div>
+                            </div>
+                            {notempty name="data"}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.token}</label>
+                                <div class="col-sm-7"><input class="form-control" name="token" value="{$data.token}" placeholder="{$Think.lang.token}"></div>
+                            </div>
+                            {/notempty}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.is_user_token}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="is_user_token" style="width:100%;">
+                                        <option value="1" {if condition="$data.is_user_token eq '1'"}selected="selected"{/if} >{$Think.lang.switch1}</option>
+                                        <option value="0" {if condition="$data.is_user_token eq '0'"}selected="selected"{/if} >{$Think.lang.switch0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.is_api_token}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="is_api_token" style="width:100%;">
+                                        <option value="1" {if condition="$data.is_api_token eq '1'"}selected="selected"{/if} >{$Think.lang.switch1}</option>
+                                        <option value="0" {if condition="$data.is_api_token eq '0'"}selected="selected"{/if} >{$Think.lang.switch0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.type}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="type" style="width:100%;">
+                                        <option value="GET" {if condition="$data.type eq 'GET'"}selected="selected"{/if} >{$Think.lang.type_get}</option>
+                                        <option value="POST" {if condition="$data.type eq 'POST'"}selected="selected"{/if} >{$Think.lang.type_post}</option>
+                                        <option value="PUT" {if condition="$data.type eq 'PUT'"}selected="selected"{/if} >{$Think.lang.type_put}</option>
+                                        <option value="DELETE" {if condition="$data.type eq 'DELETE'"}selected="selected"{/if} >{$Think.lang.type_delete}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.remark}</label>
+                                <div class="col-sm-7"><textarea class="form-control" style="resize:none;height:155px;" name="remark" placeholder="{$Think.lang.remark}">{$data.remark}</textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.sorts}</label>
+                                <div class="col-sm-7"><input class="form-control" name="sorts" value="{$data.sorts|default='50'}" placeholder="{$Think.lang.sorts}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.status}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="status" style="width:100%;">
+                                        <option value="1" {if condition="$data.status eq '1'"}selected="selected"{/if} >{$Think.lang.status1}</option>
+                                        <option value="0" {if condition="$data.status eq '0'"}selected="selected"{/if} >{$Think.lang.status0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
+})
+</script>
+{/block}

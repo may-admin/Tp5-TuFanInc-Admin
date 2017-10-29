@@ -2,7 +2,7 @@
 MySQL Database Backup Tools
 Server:127.0.0.1:
 Database:tp_base_com
-Data:2017-09-16 21:49:20
+Data:2017-10-29 10:48:27
 */
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
@@ -331,7 +331,7 @@ CREATE TABLE `tf_auth_group` (
 -- ----------------------------
 -- Records of tf_auth_group
 -- ----------------------------
-INSERT INTO `tf_auth_group` (`id`,`module`,`level`,`title`,`status`,`rules`,`notation`,`pic`,`recom`,`create_time`,`update_time`) VALUES ('1','admin','1090','超级管理员','1','1,50,57,58,59,60,61,62,63,64,51,52,53,54,2,3,29,30,31,56,4,32,33,34,55,5,11,12,13,6,14,27,28,70,94,95,96,97,71,72,73,39,40,41,42,43,46,44,45,47,65,48,49,92,93,80,81,82,83,84,85,86,87,88,89,90,91,98,99,100,101,102,103,104','我能干任何事','#dd4b39','0','1502780231','1505469545');
+INSERT INTO `tf_auth_group` (`id`,`module`,`level`,`title`,`status`,`rules`,`notation`,`pic`,`recom`,`create_time`,`update_time`) VALUES ('1','admin','1090','超级管理员','1','1,50,57,58,59,60,61,62,63,64,51,52,53,54,2,3,29,30,31,56,4,32,33,34,55,5,11,12,13,6,14,27,28,70,94,95,96,97,71,72,73,39,40,41,42,43,46,44,45,47,65,105,106,107,108,109,110,111,112,113,48,49,92,93,80,81,82,83,84,85,86,87,88,89,90,91,98,99,100,101,102,103,104','我能干任何事','#dd4b39','0','1502780231','1509205887');
 INSERT INTO `tf_auth_group` (`id`,`module`,`level`,`title`,`status`,`rules`,`notation`,`pic`,`recom`,`create_time`,`update_time`) VALUES ('2','admin','1','后台浏览','1','1,50,57,61,51,2,3,4,5,6,70,94,71,39,44,47,65,48,49,92,80,84,88,98,99,101','只能查看列表','#f39c12','0','1502784113','1502852075');
 
 -- ----------------------------
@@ -378,7 +378,7 @@ CREATE TABLE `tf_auth_rule` (
   KEY `module` (`module`) USING BTREE,
   KEY `level` (`level`) USING BTREE,
   KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_auth_rule
 -- ----------------------------
@@ -458,6 +458,15 @@ INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`s
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('102','101','admin','3','Database/restore','还原','1','1','0','','','1','1502419840','1502419840');
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('103','101','admin','3','Database/dowonload','下载','1','1','0','','','2','1502419878','1502419878');
 INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('104','101','admin','3','Database/delete','删除','1','1','0','','','3','1502419916','1502419916');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('105','0','admin','1','leftApi','API接口管理','1','1','1','','fa fa-magic','1071','1509205539','1509205539');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('106','105','admin','2','TokenApi/index','API接口列表','1','1','1','','fa fa-list-ul','1','1509205595','1509205595');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('107','106','admin','3','TokenApi/create','新增API接口','1','1','0','','','1','1509205654','1509205654');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('108','106','admin','3','TokenApi/edit','编辑API接口','1','1','0','','','2','1509205697','1509205697');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('109','106','admin','3','TokenApi/delete','删除API接口','1','1','0','','','3','1509205722','1509205722');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('110','106','admin','3','TokenApi/token','生成Token','1','1','0','','','4','1509205748','1509205748');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('111','106','admin','3','TokenApi/generateDocument','生成文档','1','1','0','','','5','1509205781','1509205781');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('112','106','admin','3','TokenApi/viewDocument','查看文档','1','1','0','','','6','1509205816','1509205816');
+INSERT INTO `tf_auth_rule` (`id`,`pid`,`module`,`level`,`name`,`title`,`type`,`status`,`ismenu`,`condition`,`icon`,`sorts`,`create_time`,`update_time`) VALUES ('113','105','admin','2','Config/api','接口配置','1','1','1','','fa fa-gears','2','1509205856','1509205856');
 
 -- ----------------------------
 -- Table structure for tf_banner
@@ -522,7 +531,7 @@ CREATE TABLE `tf_config` (
   PRIMARY KEY (`id`),
   KEY `k` (`k`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_config
 -- ----------------------------
@@ -552,7 +561,9 @@ INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`t
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('24','sms_pwd_tpl_code','【阿里大于】SMS_00000002','sms','短信密码找回模板','短信密码找回模板','6','1','text','','1496208571','1500478651');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('25','image_url','','up','图片上传域名地址','图片上传域名地址，图片路径保存数据库是否带域名，不建议填写，除非很清楚怎么使用','11','1','text','','1496295604','1501664181');
 INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('26','sms_end_time','【阿里大于】30','sms','短信验证时限','短信验证时单位：分，只填整数','4','1','text','','1498101884','1500478650');
-INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('27','login_time','60','system','登陆超时时限','登陆系统多久时间不操作，重新登陆系统，数字整数【10:10秒】','3','1','text','','1505468873','1505468873');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('27','login_time','6000','system','登陆超时时限','登陆系统多久时间不操作，重新登陆系统，数字整数【10:10秒】','3','1','text','','1505468873','1505468873');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('28','api_token_encryption','sxx','api','token加密','API接口token接口令牌加密配置字段','1','1','text','','1509206015','1509206015');
+INSERT INTO `tf_config` (`id`,`k`,`v`,`type`,`desc`,`prompt`,`sorts`,`status`,`texttype`,`textvalue`,`create_time`,`update_time`) VALUES ('29','api_url','http://dq.base.com','api','接口地址','API接口外部访问地址，可为IP地址','2','1','text','','1509206051','1509206064');
 
 -- ----------------------------
 -- Table structure for tf_flink
@@ -572,10 +583,12 @@ CREATE TABLE `tf_flink` (
   `update_time` int(10) NOT NULL COMMENT '编辑时间',
   PRIMARY KEY (`id`),
   KEY `mid` (`mid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of tf_flink
 -- ----------------------------
+INSERT INTO `tf_flink` (`id`,`mid`,`webname`,`url`,`info`,`email`,`logo`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('1','1','百度','https://www.baidu.com/','百度网址','1234@qq.com','https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png','1','1','1509244824','1509245150');
+INSERT INTO `tf_flink` (`id`,`mid`,`webname`,`url`,`info`,`email`,`logo`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('2','1','新浪微博','http://weibo.com/','','123@qq.com','','1','1','1509244966','1509244966');
 
 -- ----------------------------
 -- Table structure for tf_guestbook
@@ -651,6 +664,50 @@ INSERT INTO `tf_module_class` (`id`,`title`,`action`,`sorts`,`status`,`create_ti
 INSERT INTO `tf_module_class` (`id`,`title`,`action`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('4','内页banner','banner','2002','1','1499310261','1499310326');
 
 -- ----------------------------
+-- Table structure for tf_token_api
+-- ----------------------------
+DROP TABLE IF EXISTS `tf_token_api`;
+CREATE TABLE `tf_token_api` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(250) NOT NULL COMMENT '接口名称',
+  `module` varchar(250) NOT NULL COMMENT '模块',
+  `controller` varchar(250) NOT NULL COMMENT '控制器',
+  `method` varchar(250) NOT NULL COMMENT '方法',
+  `param` varchar(250) DEFAULT NULL COMMENT '参数',
+  `is_user_token` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否验证用户token',
+  `is_api_token` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否验证接口token',
+  `type` varchar(50) NOT NULL DEFAULT 'GET' COMMENT '请求方式',
+  `token` char(32) DEFAULT NULL COMMENT '接口令牌',
+  `document` text COMMENT '接口文档',
+  `remark` text NOT NULL COMMENT '接口备注',
+  `sorts` int(11) NOT NULL DEFAULT '50' COMMENT '排序',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态：为1正常，为0禁用',
+  `create_time` int(10) NOT NULL COMMENT '创建时间',
+  `update_time` int(10) NOT NULL COMMENT '编辑时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Records of tf_token_api
+-- ----------------------------
+INSERT INTO `tf_token_api` (`id`,`name`,`module`,`controller`,`method`,`param`,`is_user_token`,`is_api_token`,`type`,`token`,`document`,`remark`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('1','友情链接列表','api','Flink','index','','0','0','GET','0ab50bda0a40bf078a415deab654eb19','{"url":"\/api\/flink"}','?orderBy[]=id,desc&amp;page=1&amp;pageSize=2
+&amp;addon=moduleClass 【关联模块分类表】
+
+当前接口未开启任何token验证，可直接使用','1','1','1505660032','1509245191');
+INSERT INTO `tf_token_api` (`id`,`name`,`module`,`controller`,`method`,`param`,`is_user_token`,`is_api_token`,`type`,`token`,`document`,`remark`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('2','友情链接单条查询','api','Flink','index','id','1','0','GET','3708626bc9c864bc88465f4ffe79919c','{"url":"\/api\/flink\/1"}','&amp;addon=moduleClass 【关联模块分类表】
+
+当前接口开启用户token，仅开启ID为1的admin用户token【61e5146e54db6be2d7174530417ea40b】
+?token_uid=1&amp;token_user=61e5146e54db6be2d7174530417ea40b','2','1','1505660082','1509244598');
+INSERT INTO `tf_token_api` (`id`,`name`,`module`,`controller`,`method`,`param`,`is_user_token`,`is_api_token`,`type`,`token`,`document`,`remark`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('3','友情链接新增','api','Flink','index','','0','1','POST','4aefb101ea274fda9a62e234b56714df','{"url":"\/api\/flink","data":[{"key":"mid","value":"1","type":"text","enabled":true},{"key":"webname","value":"","type":"text","enabled":true},{"key":"url","value":"","type":"text","enabled":false},{"key":"info","value":"","type":"text","enabled":false},{"key":"email","value":"","type":"text","enabled":false},{"key":"logo","value":"","type":"text","enabled":false},{"key":"sorts","value":"50","type":"text","enabled":true},{"key":"status","value":"1","type":"text","enabled":true}]}','当前接口开启接口token验证
+?token_api=4aefb101ea274fda9a62e234b56714df【接口令牌token】','3','1','1507274504','1509171720');
+INSERT INTO `tf_token_api` (`id`,`name`,`module`,`controller`,`method`,`param`,`is_user_token`,`is_api_token`,`type`,`token`,`document`,`remark`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('4','友情链接编辑','api','Flink','index','id','1','1','PUT','656e9258bbcdebf31271317681e9a3a0','{"url":"\/api\/flink\/1","data":[{"key":"mid","value":"1","type":"text","enabled":true},{"key":"webname","value":"","type":"text","enabled":true},{"key":"url","value":"","type":"text","enabled":false},{"key":"info","value":"","type":"text","enabled":false},{"key":"email","value":"","type":"text","enabled":false},{"key":"logo","value":"","type":"text","enabled":false},{"key":"sorts","value":"50","type":"text","enabled":true},{"key":"status","value":"1","type":"text","enabled":true}]}','当前接口开启用户token和接口token验证，仅开启ID为1的admin用户token【61e5146e54db6be2d7174530417ea40b】
+&amp;token_uid=1&amp;token_user=61e5146e54db6be2d7174530417ea40b
+&amp;token_api=656e9258bbcdebf31271317681e9a3a0【接口令牌token】','4','1','1507274570','1509244689');
+INSERT INTO `tf_token_api` (`id`,`name`,`module`,`controller`,`method`,`param`,`is_user_token`,`is_api_token`,`type`,`token`,`document`,`remark`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('5','友情链接删除','api','Flink','index','id','0','0','DELETE','6fdb7f3a2ea04eb4ca746e64ecd96161','{"url":"\/api\/flink\/6"}','删除需要数据库成功删除才会返回200
+
+当前接口未开启任何token验证，可直接使用','5','0','1507278825','1509169242');
+INSERT INTO `tf_token_api` (`id`,`name`,`module`,`controller`,`method`,`param`,`is_user_token`,`is_api_token`,`type`,`token`,`document`,`remark`,`sorts`,`status`,`create_time`,`update_time`) VALUES ('6','友情链接自定义','api','Flink','demo','','0','0','GET','75726358b96d9ca2b6c760bb01a4df09','{"url":"\/api\/flink\/demo"}','1','6','1','1509163375','1509163924');
+
+-- ----------------------------
 -- Table structure for tf_token_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tf_token_user`;
@@ -667,7 +724,8 @@ CREATE TABLE `tf_token_user` (
 -- ----------------------------
 -- Records of tf_token_user
 -- ----------------------------
-INSERT INTO `tf_token_user` (`id`,`uid`,`type`,`token`,`token_time`,`create_time`,`update_time`) VALUES ('10','1','1','6691aefa51c979b7c40805f9644320c0','1505569820','1505569684','1505569684');
+INSERT INTO `tf_token_user` (`id`,`uid`,`type`,`token`,`token_time`,`create_time`,`update_time`) VALUES ('9','1','2','61e5146e54db6be2d7174530417ea40b','','1505556248','1505556248');
+INSERT INTO `tf_token_user` (`id`,`uid`,`type`,`token`,`token_time`,`create_time`,`update_time`) VALUES ('10','1','1','d6f873281bcf39d3adc72beac243305a','1509251307','1505569684','1505569684');
 
 -- ----------------------------
 -- Table structure for tf_user
@@ -693,7 +751,7 @@ CREATE TABLE `tf_user` (
 -- ----------------------------
 -- Records of tf_user
 -- ----------------------------
-INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','22','1502781914','1502785463','127.0.0.1','1505569684','127.0.0.1','1');
+INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('1','admin','e10adc3949ba59abbe56e057f20f883e','苏晓信','654108442@qq.com','15823075587','1','26','1502781914','1502785463','127.0.0.1','1509244414','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('2','test1','e10adc3949ba59abbe56e057f20f883e','测试账号','','','1','5','1502782875','1502783821','127.0.0.1','1502785133','106.92.245.226','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('3','不高兴','e10adc3949ba59abbe56e057f20f883e','不高兴','','','1','0','1502785283','1502785283','127.0.0.1','1502785283','127.0.0.1','1');
 INSERT INTO `tf_user` (`id`,`username`,`password`,`name`,`email`,`moblie`,`sex`,`logins`,`create_time`,`update_time`,`reg_ip`,`last_time`,`last_ip`,`status`) VALUES ('4','没头脑','e10adc3949ba59abbe56e057f20f883e','没头脑','','','1','0','1502785316','1502785316','127.0.0.1','1502785316','127.0.0.1','1');

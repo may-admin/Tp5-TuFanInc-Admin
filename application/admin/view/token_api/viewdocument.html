@@ -1,0 +1,291 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.view_document}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>API文档信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> API文档信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                    <li><a href="#tab2" data-toggle="tab">{$Think.lang.directions_param}</a></li>
+                    <li><a href="#tab3" data-toggle="tab">{$Think.lang.test_api}</a></li>
+                    <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <input type="hidden" name="type" value="{$data.type}" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.api_url}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$api_url}" placeholder="{$Think.lang.url}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.type}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" value="{$data.type}" placeholder="{$Think.lang.type}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.url}</label>
+                                <div class="col-sm-7"><input class="form-control" name="url" value="{$url}" placeholder="{$Think.lang.url}"></div>
+                            </div>
+                            {if condition=" $documentdata "}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.form_data}</label>
+                                <div class="col-sm-7">
+                                    <table class="table table-bordered form-data-table">
+                                        <thead>
+                                            <tr>
+                                                <th width="90">{$Think.lang.form_txt1}</th>
+                                                <th>{$Think.lang.form_txt2}</th>
+                                                <th>{$Think.lang.form_txt3}</th>
+                                                <th width="74">{$Think.lang.form_txt4}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {volist name="documentdata" id="vo"}
+                                            <tr>
+                                                <td><input type="checkbox" name="enabled[]" value="true" {if condition=" $vo['enabled'] "}checked="checked"{/if} class="minimal"></td>
+                                                <td style="padding:4px;"><input class="form-control" name="key[]" value="{$vo.key}" placeholder="key" style="padding:3px 6px; height:auto;" ></td>
+                                                <td style="padding:4px;"><input class="form-control" name="value[]" value="{$vo.value}" placeholder="value" style="padding:3px 6px; height:auto;" ></td>
+                                                <td><i class="fa fa-arrow-circle-o-up" style="font-size:18px;"></i> <i class="fa fa-arrow-circle-o-down" style="font-size:18px;"></i> <i class="fa fa-close" style="font-size:18px;"></i></td>
+                                            </tr>
+                                            {/volist}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4"><i class="fa fa-plus"> {$Think.lang.add_field}</i></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            {/if}
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-7">
+                                    <div class="btn-group pull-right">
+                                        <button type="submit" class="btn btn-info pull-right submitapi" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                                    </div>
+                                    <div class="btn-group pull-left">
+                                        <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <p>1、默认所有的接口操作均是<span style="color:red;">单表</span>操作，若需多表操作，请继承基础接口并重新该接口方法即可</p>
+                        <p>2、POST、PUT自动生成的<span style="color:red;">【表单数据】</span>字段为对应API接口<span style="color:red;">【数据库表】</span>所有字段，应根据实际API接口修改相应字段属性。</p>
+                        <p>3、如需<span style="color:red;">重新生成初始化API接口文档</span>，只需将<span style="color:red;">【接口URL】</span>设置为空，提交修改即可(POST、PUT如果<span style="color:red;">【表单数据】</span>中的所有字段都被删除，则接口文档也被清空，需重新生成接口文档)</p>
+                        <p>4、测试接口前，请先保存接口的所有数据，再进行<span style="color:red;">【测试接口】</span></p>
+                        <p>5、列表查询条件参数说明【下列所有条件中的<span style="color:red;">字段</span>和<span style="color:red;">模型关联表</span>请先确定是否存在，否则会报错】</p>
+                        <p style="text-indent:24px">条件查询参数：&filter[]=a,eq,b&filter[]=c,eq,d<span style="color:red;">【字段,条件,值】可多查询条件组合</span></p>
+                        <p style="text-indent:24px">条件说明：</p>
+                        <p style="text-indent:48px"><span style="color:red;">lk</span> : %sxx% 【实例：filter[]=字段,<span style="color:red;">lk</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">lkr</span> : sxx% 【实例：filter[]=字段,<span style="color:red;">lkr</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">lkl</span> : %sxx 【实例：filter[]=字段,<span style="color:red;">lkl</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">eq</span> : = 【实例：filter[]=字段,<span style="color:red;">eq</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">neq</span> : <> 【实例：filter[]=字段,<span style="color:red;">neq</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">gt</span> : > 【实例：filter[]=字段,<span style="color:red;">gt</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">egt</span> : >= 【实例：filter[]=字段,<span style="color:red;">egt</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">lt</span> : < 【实例：filter[]=字段,<span style="color:red;">lt</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">elt</span> : <= 【实例：filter[]=字段,<span style="color:red;">elt</span>,值】</p>
+                        <p style="text-indent:48px"><span style="color:red;">bt</span> : between 【实例：filter[]=字段,<span style="color:red;">bt</span>,值1,值2】</p>
+                        <p style="text-indent:48px"><span style="color:red;">nbt</span> : not between 【实例：filter[]=字段,<span style="color:red;">nbt</span>,值1,值2】</p>
+                        <p style="text-indent:48px"><span style="color:red;">in</span> : in 【实例：filter[]=字段,<span style="color:red;">in</span>,值1,值2,值3,值4,值5,值6...】</p>
+                        <p style="text-indent:48px"><span style="color:red;">nin</span> : not in 【实例：filter[]=字段,<span style="color:red;">nin</span>,值1,值2,值3,值4,值5,值6...】</p>
+                        <p style="text-indent:24px">排序参数：&orderBy[]=id,desc&orderBy[]=xxx,asc<span style="color:red;">【字段,排序方式】可多排序条件组合</span></p>
+                        <p style="text-indent:24px">当前页分页参数：&page=3</p>
+                        <p style="text-indent:24px">每页数参数：&pageSize=3</p>
+                        <p style="text-indent:24px">关联数据：&addon=AA,BB,CC<span style="color:red;">【模型关联表1,模型关联表2,模型关联表3】</span></p>
+                        <p>7、如果接口开启了验证用户token：需接口请求链接以<span style="color:red;">GET</span>方式传参【&<span style="color:red;">token_uid</span>=42&<span style="color:red;">token_user</span>=61e5146e54db6be2d7174530417ea40b】</p>
+                        <p>8、如果接口开启了验证接口token：需接口请求链接以<span style="color:red;">GET</span>方式传参【&<span style="color:red;">token_api</span>=0ab50bda0a40bf078a415deab654eb19】</p>
+                        <p>9、后续说明待添加和完善，欢迎加入群为我提出有效的改进和优化意见</p>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+	                        <div class="form-group">
+	                            <label class="col-sm-2 control-label">{$Think.lang.api_url}</label>
+	                            <div class="col-sm-7"><input class="form-control" disabled="disabled" id="ajax_url" value="{$api_url}" ></div>
+	                        </div>
+	                        <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.type}</label>
+                                <div class="col-sm-7"><input class="form-control" disabled="disabled" id="ajax_type" value="{$data.type}" ></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.search_param}</label>
+                                <div class="col-sm-7"><input class="form-control" id="search_param" value="" placeholder="?filter[]=a,eq,b&orderBy[]=id,desc&page=3&pageSize=3" ></div>
+                            </div>
+                            {if condition=" $documentdata "}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.form_data}</label>
+                                <div class="col-sm-7">
+                                    <table class="table table-bordered form-data-table">
+                                        <thead>
+                                            <tr>
+                                                <th width="90">{$Think.lang.form_txt1}</th>
+                                                <th>{$Think.lang.form_txt2}</th>
+                                                <th>{$Think.lang.form_txt3}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {volist name="documentdata" id="vo"}
+                                            <tr>
+                                                <td><input type="checkbox" value="true" {if condition=" $vo['enabled'] "}checked="checked"{/if} disabled="disabled" class="minimal"></td>
+                                                <td style="padding:4px;"><input class="form-control" value="{$vo.key}" readonly="readonly" style="padding:3px 6px; height:auto;{if condition=" $vo['enabled'] "} border-color:#dd4b39;{/if}" ></td>
+                                                <td style="padding:4px;"><input class="form-control" name="{$vo.key}" value="{$vo.value}" placeholder="value" style="padding:3px 6px; height:auto;{if condition=" $vo['enabled'] "} border-color:#dd4b39;{/if}" ></td>
+                                            </tr>
+                                            {/volist}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {/if}
+                            {if condition=" !empty($data['remark']) "}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.remark}</label>
+                                <div class="col-sm-7"><textarea class="form-control" style="resize:none;height:155px;" readonly="readonly" placeholder="{$Think.lang.remark}">{$data.remark}</textarea></div>
+                            </div>
+                            {/if}
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-7">
+                                    <div class="btn-group pull-right">
+                                        <button type="submit" class="btn btn-info pull-right test_api" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.test_api}">{$Think.lang.test_api}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    /*上移动*/
+    $('body').off('click', '.form-data-table tbody .fa-arrow-circle-o-up');
+    $('body').on("click", '.form-data-table tbody .fa-arrow-circle-o-up', function(event){
+        var _this = $(this).closest('tr');
+        var _index = _this.index();
+        if(_index != 0){
+            var movetr = _this.prev();
+            _this.insertBefore(movetr);
+        }
+    });
+    /*下移动*/
+    $('body').off('click', '.form-data-table tbody .fa-arrow-circle-o-down');
+    $('body').on("click", '.form-data-table tbody .fa-arrow-circle-o-down', function(event){
+        var _this = $(this).closest('tr');
+        var _index = _this.index();
+        var _length = $('.form-data-table tbody .fa-arrow-circle-o-down').length - 1;
+        if(_index != _length){
+            var movetr = _this.next();
+            _this.insertAfter(movetr);
+        }
+    });
+    /*删除*/
+    $('body').off('click', '.form-data-table tbody .fa-close');
+    $('body').on("click", '.form-data-table tbody .fa-close', function(event){
+        if(confirm("确定要删除吗？")){  
+            $(this).closest('tr').remove();
+        }
+    });
+    
+    /*添加*/
+    $('body').off('click', '.form-data-table tfoot .fa-plus');
+    $('body').on("click", '.form-data-table tfoot .fa-plus', function(event){
+        var _this = $(this);
+        var table = _this.closest('.form-data-table');
+        table.find('tbody').append(
+            '<tr>'+
+            '<td><input type="checkbox" name="enabled[]" value="true" class="minimal"></td>'+
+            '<td style="padding:4px;"><input class="form-control" name="key[]" value="" style="padding:3px 6px; height:auto;" ></td>'+
+            '<td style="padding:4px;"><input class="form-control" name="value[]" value="" style="padding:3px 6px; height:auto;" ></td>'+
+            '<td><i class="fa fa-arrow-circle-o-up" style="font-size:18px;"></i> <i class="fa fa-arrow-circle-o-down" style="font-size:18px;"></i> <i class="fa fa-close" style="font-size:18px;"></i></td>'+
+            '</tr>'
+        );
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+    });
+    
+    //API接口测试
+    $('body').off('click', '.test_api');
+    $('body').on("click", '.test_api', function(event){
+        var _this = $(this);
+        _this.button('loading');
+        var form = _this.closest('form');
+        var ajax_url = form.find('#ajax_url').val();
+        var ajax_type = form.find('#ajax_type').val();
+        var form_data = form.serialize();
+        var search_param = form.find('#search_param').val();
+        ajax_url = ajax_url+search_param;
+        $.ajax({
+            type : ajax_type,
+            url : ajax_url,
+            dataType : 'html',
+            data : form_data,
+            success : function(html) {
+                html = jsonFormat(html);
+                BootstrapDialog.show({
+                	title: 'Result',
+                    message: '<pre>'+html+'</pre>'
+                });
+                
+                _this.button('reset');
+            }
+        });
+    });
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
+})
+
+
+//json格式方法
+function jsonFormat(json){
+    var res="";
+    for(var i=0,j=0,k=0,ii,ele;i<json.length;i++){   //k:缩进，j:""个数
+        ele=json.charAt(i);
+        if(j%2==0&&ele=="}"){
+            k--;                
+            for(ii=0;ii<k;ii++) ele="    "+ele;
+            ele="\n"+ele;
+        }else if(j%2==0&&ele=="{"){
+            ele+="\n";
+            k++;     
+            debugger;       
+            for(ii=0;ii<k;ii++) ele+="    ";
+        }else if(j%2==0&&ele==","){
+            ele+="\n";
+            for(ii=0;ii<k;ii++) ele+="    ";
+        }else if(ele=="\""){
+            j++;
+        }
+        res+=ele;
+   }
+   return res;
+}
+</script>
+{/block}

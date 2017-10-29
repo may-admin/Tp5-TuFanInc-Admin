@@ -76,6 +76,41 @@ $(function(){
         }
     });
     
+    //API文档提交
+    $('body').off('click', '.submitapi');
+    $('body').on("click", '.submitapi', function(event){
+        var _this = $(this);
+        _this.button('loading');
+        var form = _this.closest('form');
+        
+        var checkboxs = $(".form-data-table input[name='enabled[]']");
+        for(var i=0; i<checkboxs.length; i++){
+            if(!checkboxs[i].checked){
+                checkboxs[i].checked = true;  
+                checkboxs[i].value = "false";
+            }
+        }
+        
+        if(form.length){
+            var ajax_option={
+                dataType:'json',
+                success:function(data){
+                    if(data.status == '1'){
+                        $.amaran({'message':data.info});
+                        var url = data.url;
+                        $.pjax({url: url, container: '#pjax-container', fragment:'#pjax-container'})
+                    }else if(data.status == '2'){
+                        restlogin(data.info);
+                    }else{
+                        _this.button('reset');
+                        $.amaran({'message':data.info});
+                    }
+                }
+            }
+            form.ajaxSubmit(ajax_option);
+        }
+    });
+    
     //单条删除-批量删除
     $('body').off('click', '.delete-one,.delete-all');
     $('body').on("click", '.delete-one,.delete-all', function(event){
@@ -87,7 +122,7 @@ $(function(){
         if(_this.hasClass('delete-all')){   //批量删除
             var id = '';
             var str = '';
-            var table_box = _this.closest('.box-header').next('.box-body').find(".table tr td input[type='checkbox']");
+            var table_box = _this.closest('.box-header').next('.box-body').find(".table tr td input[name='id[]']");
             $(table_box).each(function(){
                 if(true == $(this).is(':checked')){
                     str += $(this).val() + ",";
@@ -202,6 +237,7 @@ $(function(){
                     _this.data('value', pvalue);
                     _this.removeClass(addclass);
                     _this.addClass(removeclass);
+                    $.amaran({'message':data.info});
                 }else if(data.status == '2'){
                     restlogin(data.info);
                 }else{

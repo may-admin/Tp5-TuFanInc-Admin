@@ -54,6 +54,9 @@ return [
     
     'sex0'              => '女',
     'sex1'              => '男',
+
+    'switch0'           => '否',
+    'switch1'           => '是',
     
     'target_self'       => '当前页',
     'target_blank'      => '新页面',

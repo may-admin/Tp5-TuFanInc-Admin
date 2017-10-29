@@ -163,4 +163,17 @@ class Config extends Common
         $this->assign('type', $type);
         return $this->fetch('web');
     }
+    
+    /**
+     * 接口配置
+     */
+    public function api()
+    {
+        $type = ACTION_NAME;
+        $where = ['type' => $type, 'status'=>1];
+        $data = $this->cModel->where($where)->order('sorts ASC,id ASC')->select();
+        $this->assign('data', $data);
+        $this->assign('type', $type);
+        return $this->fetch('web');
+    }
 }

@@ -306,6 +306,9 @@ function authAction($rule, $cationType='create', $param=''){
         'backup' => "<a class=\"btn btn-primary btn-sm delete-all\" href=\"javascript:void(0);\" data-url=\"".url($rule)."\" data-title=\"".lang('backup')."\"><i class=\"fa fa-save\"></i> ".lang('backup')."</a>",
         'restore' => "<a class=\"btn btn-primary btn-xs delete-one\" href=\"javascript:void(0);\" data-url=\"".url($rule)."\" data-id=\"".$param."\" data-title=\"".lang('restore')."\"><i class=\"fa fa-rotate-left\"></i> ".lang('restore')."</a>",
         'dowonload' => "<a class=\"btn btn-warning btn-xs\" href=\"".url($rule, $param)."\"><i class=\"fa fa-download\"></i> ".lang('dowonload')."</a>",
+        'tokenapi' => "<a class=\"btn btn-danger btn-xs delete-one\" href=\"javascript:void(0);\" data-url=\"".url($rule)."\" data-id=\"".$param."\" data-title=\"".lang('tokenapi')."\"><i class=\"fa fa-lock\"></i> ".lang('tokenapi')."</a>",
+        'generate_document' => "<a class=\"btn btn-danger btn-xs delete-one\" href=\"javascript:void(0);\" data-url=\"".url($rule)."\" data-id=\"".$param."\" data-title=\"".lang('generate_document')."\"><i class=\"fa fa-book\"></i> ".lang('generate_document')."</a>",
+        'view_document' => "<a class=\"btn btn-warning btn-xs\" href=\"".url($rule, $param)."\"><i class=\"fa fa-book\"></i> ".lang('view_document')."</a>",
     ];
     if( authcheck($rule, UID) != 'noauth' ){
         $result = $cationTypes[$cationType];
