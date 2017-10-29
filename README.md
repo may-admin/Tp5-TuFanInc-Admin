@@ -19,6 +19,12 @@ QQ交流群：184278846<br />
 使用说明：<br />
   1、 /public/databakss/20170817161806.sql 【为数据库文件】<br />
   2、 /application/database.php 【数据库配置文件】<br />
-  3、 站点配置根目录为【/public】<br />
+  3、 站点配置根目录为【`/public`】<br />
   4、 导入数据库，配置好数据库配置文件即可正常使用<br />
   5、 默认账号：admin 密码：123456<br />
+
+# Hello API
+  1、 /application/api 目录为API模块
+  2、 系统的【API接口管理】来管理相应的API接口
+  3、 自动生成API接口token验证以及管理是否需要验证`接口token`、`用户token`和接口的使用状态
+  4、 自动生成相应接口的文档以及相应参数，以及及时测试接口的返回结果
