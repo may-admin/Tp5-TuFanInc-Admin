@@ -15,6 +15,7 @@ QQ交流群：184278846<br />
 
 附：<br />
 码云下载地址【 http://git.oschina.net/suxiaoxin/Tp5-TuFanInc-Admin 】<br />
+GitHub下载地址【 https://github.com/suxiaoxin4242/Tp5-TuFanInc-Admin 】<br />
 
 使用说明：<br />
   1、 /public/databakss/20170817161806.sql 【为数据库文件】<br />
