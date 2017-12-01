@@ -18,7 +18,7 @@ QQ交流群：184278846<br />
 GitHub下载地址【 https://github.com/suxiaoxin4242/Tp5-TuFanInc-Admin 】<br />
 
 使用说明：<br />
-  1、 /public/databakss/20170817161806.sql 【为数据库文件】<br />
+  1、 /public/databakss/20170817161806.sql 【数据库文件】<br />
   2、 /application/database.php 【数据库配置文件】<br />
   3、 站点配置根目录为【`/public`】<br />
   4、 站点开启伪静态【`去除url中的index.php`】<br />
