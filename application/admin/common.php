@@ -186,7 +186,7 @@ function csubstr($str, $length, $charset="", $start=0, $suffix=true) {
  * @throws
  */
 function search_url($delparam){
-    $url_path = $_SERVER['PATH_INFO'];
+    $url_path = '/'.request()->path();
     $get = input('get.');
     if( isset($get[$delparam]) ){ unset($get[$delparam]); }
     if( isset($get['_pjax'])   ){ unset($get['_pjax']);   }
@@ -211,7 +211,7 @@ function search_url($delparam){
  * @throws
  */
 function table_sort($param){
-    $url_path = $_SERVER['PATH_INFO'];
+    $url_path = '/'.request()->path();
     $faStr = 'fa-sort';
     $get = input('get.');
     if( isset($get['_pjax']) ){ unset($get['_pjax']); }
