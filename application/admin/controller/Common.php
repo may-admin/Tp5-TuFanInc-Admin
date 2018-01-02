@@ -43,30 +43,6 @@ class Common extends Controller
         }
         Lang::load(APP_PATH . 'admin/lang/'.$langField.'/'.CONTROLLER_NAME.'.php');
         
-        //权限判断
-        if(UID == -1){ return true; }   //配置账号跳过权限
-        
-        //跳过权限
-        $jump_auth = [
-            'Index/icons',
-            'Index/forms',
-            'Index/box',
-            'Index/tab',
-            'Index/tables',
-            'Index/question',
-            'Config/sendemail',
-        ];
-        if (in_array(CONTROLLER_NAME.'/'.ACTION_NAME, $jump_auth)){
-            return true;
-        }
-        
-        $isbrowse = Config::getByK('isbrowse');
-        if ( $isbrowse['v'] == 1){   //是否开启浏览模式
-            if (input('post.')){
-                return ajaxReturn(lang('isbrowse'));
-            }
-        }
-        
         $auth = new Auth();
         if (!$auth->check(CONTROLLER_NAME.'/'.ACTION_NAME, UID)){
             $this->error(lang('auth_no_exist'), url('Login/index'));
