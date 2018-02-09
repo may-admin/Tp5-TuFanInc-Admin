@@ -1,4 +1,6 @@
 # Tp5-TuFanInc-Admin
+<span style="color:red">框架升级5.1.5，该版本为5.0版本。</span>
+<span style="color:red">下载5.1+版本，请添加QQ群：184278846。群文件下载</span>
 作者：苏晓信<br />
 QQ交流群：184278846<br />
 使用TP5框架最新版本，Tp5+Bootstrap+Pjax的Auth权限管理Admin，能对所有的操作方法节点进行管理<br />
